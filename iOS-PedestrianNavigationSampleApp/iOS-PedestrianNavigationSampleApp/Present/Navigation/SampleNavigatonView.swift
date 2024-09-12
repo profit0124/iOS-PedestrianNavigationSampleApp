@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct NavigationView: View {
+struct SampleNavigatonView: View {
     var body: some View {
         Text("Navigation view")
     }
 }
 
 #Preview {
-    NavigationView()
+    SampleNavigatonView()
 }
