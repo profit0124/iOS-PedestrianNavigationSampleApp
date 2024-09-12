@@ -9,10 +9,11 @@ import SwiftUI
 import CoreLocation
 
 struct ContentView: View {
+    
+    @StateObject private var router = ViewRouter()
+    
     var body: some View {
-        NavigationStack {
             SearchView()
-        }
     }
 }
 

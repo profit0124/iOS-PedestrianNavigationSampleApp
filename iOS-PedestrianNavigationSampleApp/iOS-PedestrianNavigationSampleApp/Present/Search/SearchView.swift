@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct SearchView: View {
+    
+    @EnvironmentObject var router: ViewRouter
+    
     var body: some View {
-        Text("Search View")
+        Button {
+            router.push(.searchResult)
+        } label: {
+            Text("go to search result")
+        }
+
     }
 }
 
 #Preview {
     SearchView()
+        .environmentObject(ViewRouter())
 }
