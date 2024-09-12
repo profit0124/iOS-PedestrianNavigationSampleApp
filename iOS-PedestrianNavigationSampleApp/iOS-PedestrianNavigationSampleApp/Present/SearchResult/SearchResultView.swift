@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct SearchResultView: View {
+    
+    @StateObject private var viewModel: SearchResultViewModel
+    
+    init(_ text: String) {
+        self._viewModel = .init(wrappedValue: SearchResultViewModel(searchText: text))
+    }
+    
     var body: some View {
-        Text("Search result view")
+        Text(viewModel.searchText)
     }
 }
 
 #Preview {
-    SearchResultView()
+    SearchResultView("Search result")
 }

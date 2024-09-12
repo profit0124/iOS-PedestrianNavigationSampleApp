@@ -9,7 +9,7 @@ import SwiftUI
 
 enum NavigationDestination: Hashable {
     case search
-    case searchResult
+    case searchResult(text: String)
     case searchDetail
     case navigation
 }
@@ -19,8 +19,8 @@ extension NavigationDestination {
         switch self {
         case .search:
             SearchView()
-        case .searchResult:
-            SearchResultView()
+        case .searchResult(let text):
+            SearchResultView(text)
         case .searchDetail:
             SearchDetailView()
         case .navigation:
