@@ -7,6 +7,7 @@
 
 import Foundation
 import MapKit
+import Combine
 
 @MainActor
 final class SearchResultViewModel: ObservableObject {
@@ -14,18 +15,28 @@ final class SearchResultViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var results: [SearchResultModel] = []
     
+    let service: SearchService
+    
+    var cancellable = Set<AnyCancellable>()
+    
     init(searchText: String) {
         self.searchText = searchText
+        
+        self.service = SearchService()
     }
     
     enum Action {
         case onAppear
+        case fetchData
     }
     
     func send(_ action: Action) {
         switch action {
         case .onAppear:
             onAppear()
+            
+        case .fetchData:
+            fetch()
         }
     }
     
@@ -33,19 +44,20 @@ final class SearchResultViewModel: ObservableObject {
         isLoading = true
     }
     
-    func fetch() {
-        Task {
-            do {
-                isLoading = true
-                results = []
-                // TODO: Domain 작업 후 results 값 할당 로직 구현
-                try await Task.sleep(nanoseconds: 3_000_000_000)
-                results = [.mock1, .mock2, .mock3]
-                isLoading = false
-            } catch {
-                print("error: \(error)")
-            }
-        }
+    private func fetch() {
+        isLoading = true
+        results = []
         
+        service.fetch(self.searchText)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                if case .failure = completion {
+                    print("failure")
+                }
+            } receiveValue: { [weak self] in
+                self?.results = $0
+                self?.isLoading = false
+            }
+            .store(in: &cancellable)
     }
 }
