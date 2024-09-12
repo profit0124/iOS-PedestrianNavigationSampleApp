@@ -1,0 +1,711 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3180A62C2C9193B400558CBE /* dev.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3180A62A2C9192FA00558CBE /* dev.xcconfig */; };
+		3180A62E2C91943500558CBE /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180A62D2C91943500558CBE /* Constant.swift */; };
+		31A3EDAC2C92715D00223179 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A3EDAB2C92715D00223179 /* SearchView.swift */; };
+		31A3EDAE2C92716300223179 /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A3EDAD2C92716300223179 /* SearchResultView.swift */; };
+		31A3EDB02C92716900223179 /* SearchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A3EDAF2C92716900223179 /* SearchDetailView.swift */; };
+		31A3EDB22C92717200223179 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A3EDB12C92717200223179 /* NavigationView.swift */; };
+		31D6C1902C9191B800AA00EE /* iOS_PedestrianNavigationSampleAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D6C18F2C9191B800AA00EE /* iOS_PedestrianNavigationSampleAppApp.swift */; };
+		31D6C1922C9191B800AA00EE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D6C1912C9191B800AA00EE /* ContentView.swift */; };
+		31D6C1942C9191B900AA00EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31D6C1932C9191B900AA00EE /* Assets.xcassets */; };
+		31D6C1972C9191B900AA00EE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31D6C1962C9191B900AA00EE /* Preview Assets.xcassets */; };
+		31D6C1A12C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D6C1A02C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppTests.swift */; };
+		31D6C1AB2C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D6C1AA2C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppUITests.swift */; };
+		31D6C1AD2C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D6C1AC2C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		31D6C19D2C9191BA00AA00EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 31D6C1842C9191B800AA00EE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 31D6C18B2C9191B800AA00EE;
+			remoteInfo = "iOS-PedestrianNavigationSampleApp";
+		};
+		31D6C1A72C9191BA00AA00EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 31D6C1842C9191B800AA00EE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 31D6C18B2C9191B800AA00EE;
+			remoteInfo = "iOS-PedestrianNavigationSampleApp";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3180A62A2C9192FA00558CBE /* dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = dev.xcconfig; sourceTree = "<group>"; };
+		3180A62B2C91938C00558CBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3180A62D2C91943500558CBE /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		31A3EDAB2C92715D00223179 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		31A3EDAD2C92716300223179 /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
+		31A3EDAF2C92716900223179 /* SearchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailView.swift; sourceTree = "<group>"; };
+		31A3EDB12C92717200223179 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
+		31D6C18C2C9191B800AA00EE /* iOS-PedestrianNavigationSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-PedestrianNavigationSampleApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		31D6C18F2C9191B800AA00EE /* iOS_PedestrianNavigationSampleAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_PedestrianNavigationSampleAppApp.swift; sourceTree = "<group>"; };
+		31D6C1912C9191B800AA00EE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		31D6C1932C9191B900AA00EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		31D6C1962C9191B900AA00EE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		31D6C19C2C9191BA00AA00EE /* iOS-PedestrianNavigationSampleAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-PedestrianNavigationSampleAppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		31D6C1A02C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_PedestrianNavigationSampleAppTests.swift; sourceTree = "<group>"; };
+		31D6C1A62C9191BA00AA00EE /* iOS-PedestrianNavigationSampleAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-PedestrianNavigationSampleAppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		31D6C1AA2C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_PedestrianNavigationSampleAppUITests.swift; sourceTree = "<group>"; };
+		31D6C1AC2C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_PedestrianNavigationSampleAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		31D6C1892C9191B800AA00EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31D6C1992C9191BA00AA00EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31D6C1A32C9191BA00AA00EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		31A3EDA72C92712600223179 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				31A3EDAB2C92715D00223179 /* SearchView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		31A3EDA82C92713600223179 /* SearchResult */ = {
+			isa = PBXGroup;
+			children = (
+				31A3EDAD2C92716300223179 /* SearchResultView.swift */,
+			);
+			path = SearchResult;
+			sourceTree = "<group>";
+		};
+		31A3EDA92C92714A00223179 /* SearchDetail */ = {
+			isa = PBXGroup;
+			children = (
+				31A3EDAF2C92716900223179 /* SearchDetailView.swift */,
+			);
+			path = SearchDetail;
+			sourceTree = "<group>";
+		};
+		31A3EDAA2C92715000223179 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				31A3EDB12C92717200223179 /* NavigationView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		31D6C1832C9191B800AA00EE = {
+			isa = PBXGroup;
+			children = (
+				31D6C18E2C9191B800AA00EE /* iOS-PedestrianNavigationSampleApp */,
+				31D6C19F2C9191BA00AA00EE /* iOS-PedestrianNavigationSampleAppTests */,
+				31D6C1A92C9191BA00AA00EE /* iOS-PedestrianNavigationSampleAppUITests */,
+				31D6C18D2C9191B800AA00EE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		31D6C18D2C9191B800AA00EE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				31D6C18C2C9191B800AA00EE /* iOS-PedestrianNavigationSampleApp.app */,
+				31D6C19C2C9191BA00AA00EE /* iOS-PedestrianNavigationSampleAppTests.xctest */,
+				31D6C1A62C9191BA00AA00EE /* iOS-PedestrianNavigationSampleAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		31D6C18E2C9191B800AA00EE /* iOS-PedestrianNavigationSampleApp */ = {
+			isa = PBXGroup;
+			children = (
+				3180A62B2C91938C00558CBE /* Info.plist */,
+				31D6C1BD2C91928800AA00EE /* App */,
+				31D6C1BC2C91927600AA00EE /* Resources */,
+				31D6C1BB2C91926F00AA00EE /* Data */,
+				31D6C1BA2C91926800AA00EE /* Domain */,
+				31D6C1B92C91925E00AA00EE /* Present */,
+				31D6C1952C9191B900AA00EE /* Preview Content */,
+			);
+			path = "iOS-PedestrianNavigationSampleApp";
+			sourceTree = "<group>";
+		};
+		31D6C1952C9191B900AA00EE /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				31D6C1962C9191B900AA00EE /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		31D6C19F2C9191BA00AA00EE /* iOS-PedestrianNavigationSampleAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				31D6C1A02C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppTests.swift */,
+			);
+			path = "iOS-PedestrianNavigationSampleAppTests";
+			sourceTree = "<group>";
+		};
+		31D6C1A92C9191BA00AA00EE /* iOS-PedestrianNavigationSampleAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				31D6C1AA2C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppUITests.swift */,
+				31D6C1AC2C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppUITestsLaunchTests.swift */,
+			);
+			path = "iOS-PedestrianNavigationSampleAppUITests";
+			sourceTree = "<group>";
+		};
+		31D6C1B92C91925E00AA00EE /* Present */ = {
+			isa = PBXGroup;
+			children = (
+				31A3EDAA2C92715000223179 /* Navigation */,
+				31A3EDA92C92714A00223179 /* SearchDetail */,
+				31A3EDA82C92713600223179 /* SearchResult */,
+				31A3EDA72C92712600223179 /* Search */,
+			);
+			path = Present;
+			sourceTree = "<group>";
+		};
+		31D6C1BA2C91926800AA00EE /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		31D6C1BB2C91926F00AA00EE /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				3180A62D2C91943500558CBE /* Constant.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		31D6C1BC2C91927600AA00EE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				31D6C1932C9191B900AA00EE /* Assets.xcassets */,
+				3180A62A2C9192FA00558CBE /* dev.xcconfig */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		31D6C1BD2C91928800AA00EE /* App */ = {
+			isa = PBXGroup;
+			children = (
+				31D6C18F2C9191B800AA00EE /* iOS_PedestrianNavigationSampleAppApp.swift */,
+				31D6C1912C9191B800AA00EE /* ContentView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		31D6C18B2C9191B800AA00EE /* iOS-PedestrianNavigationSampleApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 31D6C1B02C9191BA00AA00EE /* Build configuration list for PBXNativeTarget "iOS-PedestrianNavigationSampleApp" */;
+			buildPhases = (
+				31D6C1882C9191B800AA00EE /* Sources */,
+				31D6C1892C9191B800AA00EE /* Frameworks */,
+				31D6C18A2C9191B800AA00EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "iOS-PedestrianNavigationSampleApp";
+			productName = "iOS-PedestrianNavigationSampleApp";
+			productReference = 31D6C18C2C9191B800AA00EE /* iOS-PedestrianNavigationSampleApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		31D6C19B2C9191BA00AA00EE /* iOS-PedestrianNavigationSampleAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 31D6C1B32C9191BA00AA00EE /* Build configuration list for PBXNativeTarget "iOS-PedestrianNavigationSampleAppTests" */;
+			buildPhases = (
+				31D6C1982C9191BA00AA00EE /* Sources */,
+				31D6C1992C9191BA00AA00EE /* Frameworks */,
+				31D6C19A2C9191BA00AA00EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				31D6C19E2C9191BA00AA00EE /* PBXTargetDependency */,
+			);
+			name = "iOS-PedestrianNavigationSampleAppTests";
+			productName = "iOS-PedestrianNavigationSampleAppTests";
+			productReference = 31D6C19C2C9191BA00AA00EE /* iOS-PedestrianNavigationSampleAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		31D6C1A52C9191BA00AA00EE /* iOS-PedestrianNavigationSampleAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 31D6C1B62C9191BA00AA00EE /* Build configuration list for PBXNativeTarget "iOS-PedestrianNavigationSampleAppUITests" */;
+			buildPhases = (
+				31D6C1A22C9191BA00AA00EE /* Sources */,
+				31D6C1A32C9191BA00AA00EE /* Frameworks */,
+				31D6C1A42C9191BA00AA00EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				31D6C1A82C9191BA00AA00EE /* PBXTargetDependency */,
+			);
+			name = "iOS-PedestrianNavigationSampleAppUITests";
+			productName = "iOS-PedestrianNavigationSampleAppUITests";
+			productReference = 31D6C1A62C9191BA00AA00EE /* iOS-PedestrianNavigationSampleAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		31D6C1842C9191B800AA00EE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					31D6C18B2C9191B800AA00EE = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					31D6C19B2C9191BA00AA00EE = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 31D6C18B2C9191B800AA00EE;
+					};
+					31D6C1A52C9191BA00AA00EE = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 31D6C18B2C9191B800AA00EE;
+					};
+				};
+			};
+			buildConfigurationList = 31D6C1872C9191B800AA00EE /* Build configuration list for PBXProject "iOS-PedestrianNavigationSampleApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 31D6C1832C9191B800AA00EE;
+			productRefGroup = 31D6C18D2C9191B800AA00EE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				31D6C18B2C9191B800AA00EE /* iOS-PedestrianNavigationSampleApp */,
+				31D6C19B2C9191BA00AA00EE /* iOS-PedestrianNavigationSampleAppTests */,
+				31D6C1A52C9191BA00AA00EE /* iOS-PedestrianNavigationSampleAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		31D6C18A2C9191B800AA00EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3180A62C2C9193B400558CBE /* dev.xcconfig in Resources */,
+				31D6C1972C9191B900AA00EE /* Preview Assets.xcassets in Resources */,
+				31D6C1942C9191B900AA00EE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31D6C19A2C9191BA00AA00EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31D6C1A42C9191BA00AA00EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		31D6C1882C9191B800AA00EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31A3EDB22C92717200223179 /* NavigationView.swift in Sources */,
+				31A3EDAC2C92715D00223179 /* SearchView.swift in Sources */,
+				31D6C1922C9191B800AA00EE /* ContentView.swift in Sources */,
+				31D6C1902C9191B800AA00EE /* iOS_PedestrianNavigationSampleAppApp.swift in Sources */,
+				31A3EDB02C92716900223179 /* SearchDetailView.swift in Sources */,
+				3180A62E2C91943500558CBE /* Constant.swift in Sources */,
+				31A3EDAE2C92716300223179 /* SearchResultView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31D6C1982C9191BA00AA00EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31D6C1A12C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		31D6C1A22C9191BA00AA00EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31D6C1AB2C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppUITests.swift in Sources */,
+				31D6C1AD2C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		31D6C19E2C9191BA00AA00EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 31D6C18B2C9191B800AA00EE /* iOS-PedestrianNavigationSampleApp */;
+			targetProxy = 31D6C19D2C9191BA00AA00EE /* PBXContainerItemProxy */;
+		};
+		31D6C1A82C9191BA00AA00EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 31D6C18B2C9191B800AA00EE /* iOS-PedestrianNavigationSampleApp */;
+			targetProxy = 31D6C1A72C9191BA00AA00EE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		31D6C1AE2C9191BA00AA00EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		31D6C1AF2C9191BA00AA00EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		31D6C1B12C9191BA00AA00EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3180A62A2C9192FA00558CBE /* dev.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"iOS-PedestrianNavigationSampleApp/Preview Content\"";
+				DEVELOPMENT_TEAM = A44U4A2F2G;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS-PedestrianNavigationSampleApp/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Location Auth";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location Auth";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aidall.iOS-PedestrianNavigationSampleApp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		31D6C1B22C9191BA00AA00EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3180A62A2C9192FA00558CBE /* dev.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"iOS-PedestrianNavigationSampleApp/Preview Content\"";
+				DEVELOPMENT_TEAM = A44U4A2F2G;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS-PedestrianNavigationSampleApp/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Location Auth";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location Auth";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aidall.iOS-PedestrianNavigationSampleApp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		31D6C1B42C9191BA00AA00EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A44U4A2F2G;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aidall.iOS-PedestrianNavigationSampleAppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOS-PedestrianNavigationSampleApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/iOS-PedestrianNavigationSampleApp";
+			};
+			name = Debug;
+		};
+		31D6C1B52C9191BA00AA00EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A44U4A2F2G;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aidall.iOS-PedestrianNavigationSampleAppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOS-PedestrianNavigationSampleApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/iOS-PedestrianNavigationSampleApp";
+			};
+			name = Release;
+		};
+		31D6C1B72C9191BA00AA00EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A44U4A2F2G;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aidall.iOS-PedestrianNavigationSampleAppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "iOS-PedestrianNavigationSampleApp";
+			};
+			name = Debug;
+		};
+		31D6C1B82C9191BA00AA00EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A44U4A2F2G;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aidall.iOS-PedestrianNavigationSampleAppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "iOS-PedestrianNavigationSampleApp";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		31D6C1872C9191B800AA00EE /* Build configuration list for PBXProject "iOS-PedestrianNavigationSampleApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				31D6C1AE2C9191BA00AA00EE /* Debug */,
+				31D6C1AF2C9191BA00AA00EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		31D6C1B02C9191BA00AA00EE /* Build configuration list for PBXNativeTarget "iOS-PedestrianNavigationSampleApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				31D6C1B12C9191BA00AA00EE /* Debug */,
+				31D6C1B22C9191BA00AA00EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		31D6C1B32C9191BA00AA00EE /* Build configuration list for PBXNativeTarget "iOS-PedestrianNavigationSampleAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				31D6C1B42C9191BA00AA00EE /* Debug */,
+				31D6C1B52C9191BA00AA00EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		31D6C1B62C9191BA00AA00EE /* Build configuration list for PBXNativeTarget "iOS-PedestrianNavigationSampleAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				31D6C1B72C9191BA00AA00EE /* Debug */,
+				31D6C1B82C9191BA00AA00EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 31D6C1842C9191B800AA00EE /* Project object */;
+}
