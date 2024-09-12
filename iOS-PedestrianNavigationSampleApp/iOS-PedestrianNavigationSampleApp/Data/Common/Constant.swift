@@ -10,7 +10,7 @@ import Foundation
 enum Constant {
     static var tmapBaseURL: String {
         let urlString = Bundle.main.object(forInfoDictionaryKey: "TMapBaseURL") as? String
-        return urlString ?? ""
+        return "https://\(urlString ?? "")"
     }
     
     static var tApiAppKey: String {

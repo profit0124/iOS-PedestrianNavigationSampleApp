@@ -9,9 +9,21 @@ import SwiftUI
 
 @main
 struct iOS_PedestrianNavigationSampleAppApp: App {
+    
+    @StateObject private var router = ViewRouter()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack(path: $router.path) {
+                Group {
+                    ContentView()
+                }
+                .navigationDestination(for: NavigationDestination.self) {
+                    $0.destinationView()
+                }
+            }
+            .environmentObject(router)
+            
         }
     }
 }
