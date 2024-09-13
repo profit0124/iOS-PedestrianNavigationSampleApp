@@ -22,7 +22,7 @@ extension NavigationDestination {
         case let .searchResult(text):
             SearchResultView(text)
         case let .searchDetail(selectItem):
-            SearchDetailView()
+            SearchDetailView(selectItem)
         case .navigation:
             SampleNavigatonView()
         }

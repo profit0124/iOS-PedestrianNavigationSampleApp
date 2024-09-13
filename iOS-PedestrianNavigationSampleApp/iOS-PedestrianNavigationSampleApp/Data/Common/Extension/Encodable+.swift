@@ -20,7 +20,6 @@ extension Encodable {
         var component = URLComponents(string: urlString)
         if component != nil {
             let query = self.toDictionary()
-            print(query)
             let queryItems = query.map{ URLQueryItem(name: $0.key, value: "\($0.value)") }
                 component?.queryItems = queryItems
         }
