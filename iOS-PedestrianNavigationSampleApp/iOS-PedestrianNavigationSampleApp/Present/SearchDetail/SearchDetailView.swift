@@ -22,6 +22,7 @@ struct SearchDetailView: View {
     
     var body: some View {
         if let state = viewModel.state {
+            
             VStack {
                 SearchDetailMapView(mapView: $mapView, viewModel: viewModel)
                 
@@ -42,26 +43,26 @@ struct SearchDetailView: View {
                                 }
                                 .contentShape(Rectangle())
                             }
-                            .overlay(alignment: .trailing) {
-                                Button {
-                                    viewRouter.push(.navigation(model: route))
-                                } label: {
-                                    Image(systemName: "chevron.right")
-                                        .resizable()
-                                        .foregroundStyle(.white)
-                                        .frame(width: 20, height: 20)
-                                        .padding(10)
-                                        .background {
-                                            RoundedRectangle(cornerRadius: 8)
-                                                .fill(.blue)
-                                        }
-                                }
-                                
-                            }
                         }
                     }
                     .padding(.horizontal)
                 }
+            }
+            .overlay(alignment: .bottom) {
+                Button {
+                    viewRouter.push(.navigation(model: state.routes))
+                } label: {
+                    Text("안내 시작")
+                        .foregroundStyle(.white)
+                        .padding(.vertical, 16)
+                        .frame(maxWidth: .infinity)
+                        .background {
+                            RoundedRectangle(cornerRadius: 8)
+                        }
+                }
+                .padding(.bottom, 24)
+                .padding(.horizontal, 16)
+
             }
         } else {
             ProgressView()

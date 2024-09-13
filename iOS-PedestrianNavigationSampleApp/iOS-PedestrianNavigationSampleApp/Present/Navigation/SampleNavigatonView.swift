@@ -9,9 +9,9 @@ import SwiftUI
 
 struct SampleNavigatonView: View {
     
-    let model: NavigationModel
+    let model: [NavigationModel]
     
-    init(_ model: NavigationModel) {
+    init(_ model: [NavigationModel]) {
         self.model = model
     }
     
@@ -21,5 +21,5 @@ struct SampleNavigatonView: View {
 }
 
 #Preview {
-    SampleNavigatonView(.init(id: 0, name: "", description: "", pointCoordinate: .init(latitude: 0, longitude: 0), lineModels: []))
+    SampleNavigatonView([.init(id: 0, name: "", description: "", pointCoordinate: .init(latitude: 0, longitude: 0), lineModels: [])])
 }
