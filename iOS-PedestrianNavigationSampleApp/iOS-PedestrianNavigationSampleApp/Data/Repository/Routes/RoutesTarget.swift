@@ -36,7 +36,7 @@ extension RoutesTarget: TargetType {
     
     var httpHeaderFields: [HttpHeaderField] {
         switch self {
-        case .postRoutes(let _):
+        case .postRoutes:
             [.accept, .contentType, .appKey]
         }
     }

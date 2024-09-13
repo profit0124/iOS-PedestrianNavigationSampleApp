@@ -36,7 +36,7 @@ extension SearchTarget: TargetType {
     
     var httpHeaderFields: [HttpHeaderField] {
         switch self {
-        case .getTotal(let _):
+        case .getTotal:
             [.accept, .appKey]
         }
     }

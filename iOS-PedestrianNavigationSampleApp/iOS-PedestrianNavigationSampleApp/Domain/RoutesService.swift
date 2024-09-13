@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import MapKit
 import Combine
 
 protocol RoutesServiceType {
-    func fetch(_ model: SearchResultModel)
+    func fetch(_ model: SearchResultModel) -> AnyPublisher<SearchDetailViewModel.State, ServiceError>
 }
 
 final class RoutesService: RoutesServiceType {
@@ -24,7 +25,7 @@ final class RoutesService: RoutesServiceType {
         self.repository = RoutesRepository()
     }
     
-    func fetch(_ model: SearchResultModel) {
+    func fetch(_ model: SearchResultModel) -> AnyPublisher<SearchDetailViewModel.State, ServiceError> {
         manager.fetchLocation()
             .map { value in
                 RoutesDTO.RequestDTO.PostRoutes(
@@ -45,14 +46,10 @@ final class RoutesService: RoutesServiceType {
                     .eraseToAnyPublisher()
                 }
             }
-            .eraseToAnyPublisher()
-            .sink { completion in
-                print(completion)
-            } receiveValue: { result in
-                print("success")
+            .compactMap {
+                $0.toSearchDetailModel()
             }
-            .store(in: &cancellables)
-
-        
+            .mapError { .error($0) }
+            .eraseToAnyPublisher()
     }
 }
