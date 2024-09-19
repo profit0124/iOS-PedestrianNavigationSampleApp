@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		317143382C93D19C007411B7 /* RoutesDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317143372C93D19C007411B7 /* RoutesDTO.swift */; };
+		3171433A2C93D1C0007411B7 /* RoutesRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317143392C93D1C0007411B7 /* RoutesRequestDTO.swift */; };
+		3171433C2C93D1C8007411B7 /* RoutesResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3171433B2C93D1C8007411B7 /* RoutesResponseDTO.swift */; };
+		3171433F2C93DD7A007411B7 /* RoutesTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3171433E2C93DD7A007411B7 /* RoutesTarget.swift */; };
+		317143412C93DD84007411B7 /* RoutesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317143402C93DD84007411B7 /* RoutesRepository.swift */; };
+		317143432C93DF48007411B7 /* RoutesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317143422C93DF48007411B7 /* RoutesService.swift */; };
+		317143452C93E3AB007411B7 /* SearchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317143442C93E3AB007411B7 /* SearchDetailViewModel.swift */; };
+		3171434E2C940B23007411B7 /* SearchDetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3171434D2C940B23007411B7 /* SearchDetailMapView.swift */; };
+		317143502C941C40007411B7 /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3171434F2C941C40007411B7 /* NavigationModel.swift */; };
 		3180A62C2C9193B400558CBE /* dev.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3180A62A2C9192FA00558CBE /* dev.xcconfig */; };
 		3180A62E2C91943500558CBE /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180A62D2C91943500558CBE /* Constant.swift */; };
 		318D0EF52C92819000E6854C /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318D0EF42C92819000E6854C /* ViewRouter.swift */; };
@@ -60,6 +69,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		317143372C93D19C007411B7 /* RoutesDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesDTO.swift; sourceTree = "<group>"; };
+		317143392C93D1C0007411B7 /* RoutesRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesRequestDTO.swift; sourceTree = "<group>"; };
+		3171433B2C93D1C8007411B7 /* RoutesResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesResponseDTO.swift; sourceTree = "<group>"; };
+		3171433E2C93DD7A007411B7 /* RoutesTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTarget.swift; sourceTree = "<group>"; };
+		317143402C93DD84007411B7 /* RoutesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesRepository.swift; sourceTree = "<group>"; };
+		317143422C93DF48007411B7 /* RoutesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesService.swift; sourceTree = "<group>"; };
+		317143442C93E3AB007411B7 /* SearchDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewModel.swift; sourceTree = "<group>"; };
+		3171434D2C940B23007411B7 /* SearchDetailMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailMapView.swift; sourceTree = "<group>"; };
+		3171434F2C941C40007411B7 /* NavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
 		3180A62A2C9192FA00558CBE /* dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = dev.xcconfig; sourceTree = "<group>"; };
 		3180A62B2C91938C00558CBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3180A62D2C91943500558CBE /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
@@ -124,6 +142,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		317143362C93D18E007411B7 /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				317143372C93D19C007411B7 /* RoutesDTO.swift */,
+				317143392C93D1C0007411B7 /* RoutesRequestDTO.swift */,
+				3171433B2C93D1C8007411B7 /* RoutesResponseDTO.swift */,
+			);
+			path = Routes;
+			sourceTree = "<group>";
+		};
+		3171433D2C93DD6B007411B7 /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				3171433E2C93DD7A007411B7 /* RoutesTarget.swift */,
+				317143402C93DD84007411B7 /* RoutesRepository.swift */,
+			);
+			path = Routes;
+			sourceTree = "<group>";
+		};
 		318D0EF32C92817E00E6854C /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				318D0EFF2C929F4B00E6854C /* SearchResultModel.swift */,
+				3171434F2C941C40007411B7 /* NavigationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -156,6 +194,7 @@
 		318D0F0A2C92B77100E6854C /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				317143362C93D18E007411B7 /* Routes */,
 				318D0F092C92B76700E6854C /* Search */,
 			);
 			path = DTO;
@@ -186,6 +225,7 @@
 			children = (
 				318D0F052C92B41F00E6854C /* LocationManager.swift */,
 				318D0F1F2C92C3C000E6854C /* URLSessionManager.swift */,
+				3171433D2C93DD6B007411B7 /* Routes */,
 				318D0F1A2C92C26C00E6854C /* Search */,
 			);
 			path = Repository;
@@ -231,6 +271,8 @@
 			isa = PBXGroup;
 			children = (
 				31A3EDAF2C92716900223179 /* SearchDetailView.swift */,
+				317143442C93E3AB007411B7 /* SearchDetailViewModel.swift */,
+				3171434D2C940B23007411B7 /* SearchDetailMapView.swift */,
 			);
 			path = SearchDetail;
 			sourceTree = "<group>";
@@ -319,6 +361,7 @@
 				318D0EFE2C929F4100E6854C /* Model */,
 				318D0EF32C92817E00E6854C /* Common */,
 				318D0F012C92B33C00E6854C /* SearchService.swift */,
+				317143422C93DF48007411B7 /* RoutesService.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -486,11 +529,16 @@
 				318D0F022C92B33C00E6854C /* SearchService.swift in Sources */,
 				31A3EDB22C92717200223179 /* SampleNavigatonView.swift in Sources */,
 				318D0F062C92B41F00E6854C /* LocationManager.swift in Sources */,
+				3171433C2C93D1C8007411B7 /* RoutesResponseDTO.swift in Sources */,
 				318D0F202C92C3C000E6854C /* URLSessionManager.swift in Sources */,
 				318D0EFD2C9289AA00E6854C /* SearchResultViewModel.swift in Sources */,
 				318D0F182C92BE0300E6854C /* Encodable+.swift in Sources */,
 				31A3EDAC2C92715D00223179 /* SearchView.swift in Sources */,
+				317143502C941C40007411B7 /* NavigationModel.swift in Sources */,
+				317143452C93E3AB007411B7 /* SearchDetailViewModel.swift in Sources */,
+				3171434E2C940B23007411B7 /* SearchDetailMapView.swift in Sources */,
 				318D0F252C92D85900E6854C /* SearchMapViewRepresentable.swift in Sources */,
+				3171433F2C93DD7A007411B7 /* RoutesTarget.swift in Sources */,
 				318D0F152C92BBA600E6854C /* TargetType.swift in Sources */,
 				31D6C1922C9191B800AA00EE /* ContentView.swift in Sources */,
 				318D0F232C92C76300E6854C /* String+.swift in Sources */,
@@ -499,15 +547,19 @@
 				318D0F1C2C92C27700E6854C /* SearchTarget.swift in Sources */,
 				31D6C1902C9191B800AA00EE /* iOS_PedestrianNavigationSampleAppApp.swift in Sources */,
 				31A3EDB02C92716900223179 /* SearchDetailView.swift in Sources */,
+				317143412C93DD84007411B7 /* RoutesRepository.swift in Sources */,
 				3180A62E2C91943500558CBE /* Constant.swift in Sources */,
 				318D0F1E2C92C28000E6854C /* SearchRepository.swift in Sources */,
+				317143382C93D19C007411B7 /* RoutesDTO.swift in Sources */,
 				318D0F132C92BB6B00E6854C /* HttpMethod.swift in Sources */,
 				318D0EFB2C9287C700E6854C /* SearchViewModel.swift in Sources */,
+				3171433A2C93D1C0007411B7 /* RoutesRequestDTO.swift in Sources */,
 				318D0F002C929F4B00E6854C /* SearchResultModel.swift in Sources */,
 				31A3EDAE2C92716300223179 /* SearchResultView.swift in Sources */,
 				318D0EF92C92873900E6854C /* NavigationDestination.swift in Sources */,
 				318D0F042C92B39800E6854C /* ServiceError.swift in Sources */,
 				318D0F082C92B4E300E6854C /* DataError.swift in Sources */,
+				317143432C93DF48007411B7 /* RoutesService.swift in Sources */,
 				318D0EF52C92819000E6854C /* ViewRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

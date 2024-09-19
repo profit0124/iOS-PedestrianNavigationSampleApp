@@ -11,7 +11,7 @@ enum NavigationDestination: Hashable {
     case search
     case searchResult(text: String)
     case searchDetail(selectItem: SearchResultModel)
-    case navigation
+    case navigation(model: [NavigationModel])
 }
 
 extension NavigationDestination {
@@ -22,9 +22,9 @@ extension NavigationDestination {
         case let .searchResult(text):
             SearchResultView(text)
         case let .searchDetail(selectItem):
-            SearchDetailView()
-        case .navigation:
-            SampleNavigatonView()
+            SearchDetailView(selectItem)
+        case let .navigation(model):
+            SampleNavigatonView(model)
         }
     }
 }
