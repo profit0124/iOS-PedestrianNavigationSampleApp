@@ -34,10 +34,10 @@ extension SearchTarget: TargetType {
         }
     }
     
-    var httpHeaderField: HttpHeaderField? {
+    var httpHeaderFields: [HttpHeaderField] {
         switch self {
         case .getTotal:
-            return .appKey
+            [.accept, .appKey]
         }
     }
 }

@@ -16,7 +16,17 @@ enum RequestParameter {
 
 enum HttpHeaderField: String {
     case accept = "Accept"
+    case contentType = "Content-Type"
     case appKey = "appKey"
+    
+    func getValue() -> String {
+        switch self {
+        case .accept, .contentType:
+            ContentType.json.rawValue
+        case .appKey:
+            Constant.tApiAppKey
+        }
+    }
 }
 
 enum ContentType: String {
@@ -28,7 +38,7 @@ protocol TargetType {
     var path: String { get }
     var method: HttpMethod { get }
     var parameter: RequestParameter { get }
-    var httpHeaderField: HttpHeaderField? { get }
+    var httpHeaderFields: [HttpHeaderField] { get }
     
     func asURLRequest() -> URLRequest
 }
@@ -41,10 +51,9 @@ extension TargetType {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.upperCase
         
-        urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HttpHeaderField.accept.rawValue)
         
-        if let field = httpHeaderField, field == .appKey {
-            urlRequest.setValue(Constant.tApiAppKey, forHTTPHeaderField: field.rawValue)
+        httpHeaderFields.forEach {
+            urlRequest.setValue($0.getValue(), forHTTPHeaderField: $0.rawValue)
         }
         
         switch parameter {
@@ -64,8 +73,6 @@ extension TargetType {
             }
             urlRequest.httpBody = body.getBodyData()
         }
-        
-        print(urlRequest)
         return urlRequest
     }
 }
