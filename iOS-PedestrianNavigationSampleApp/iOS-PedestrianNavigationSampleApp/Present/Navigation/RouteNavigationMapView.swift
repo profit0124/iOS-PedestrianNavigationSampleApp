@@ -28,7 +28,10 @@ struct RouteNavigationMapView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
+        // 현재 위치가 변경때마다 PolylineUpdate
         context.coordinator.updatePolyLine()
+        // TODO: Gesture로 지도 이동 시, Camera update 를 일정시간 막아두기
+        // 현재 위치의 변경때마다 카메라 follow
         context.coordinator.updateCamera()
     }
     
@@ -39,11 +42,17 @@ struct RouteNavigationMapView: UIViewRepresentable {
             self.parent = parent
         }
         
+        /// ViewModel 에 할당된 navigationModel 배열을 활용하여 루트를 표시하는 Polyline 추가
         func addPolyLine() {
-            parent.mapView.addOverlay(parent.viewModel.currentPolyline)
+            if let currentPolyLine = parent.viewModel.currentPolyline {
+                parent.mapView.addOverlay(currentPolyLine)
+            }
             parent.mapView.addOverlay(parent.viewModel.nextPolylines)
         }
         
+        
+        // TODO: Update 로직의 최적화
+        /// 현재위치가 업데이트 될 때마다, Polyline을 삭제 후 새로운 상태로 추가
         func updatePolyLine() {
             parent.mapView.overlays.forEach{
                 parent.mapView.removeOverlay($0)

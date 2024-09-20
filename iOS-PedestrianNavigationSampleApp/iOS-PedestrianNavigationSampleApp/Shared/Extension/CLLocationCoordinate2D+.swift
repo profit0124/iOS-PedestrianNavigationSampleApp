@@ -38,6 +38,8 @@ extension CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: lat, longitude: lon)
     }
     
+    /// CLLocationCoordinate2D 로 거리 구하기
+    /// 단위는 m예상
     func getDistance(to: CLLocationCoordinate2D) -> Double {
         let from = CLLocation(latitude: self.latitude, longitude: self.longitude)
         let to = CLLocation(latitude: to.latitude, longitude: to.longitude)
