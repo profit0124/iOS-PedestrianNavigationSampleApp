@@ -11,6 +11,8 @@ import Combine
 
 protocol RoutesServiceType {
     func fetch(_ model: SearchResultModel) -> AnyPublisher<SearchDetailViewModel.State, ServiceError>
+    
+    func startUpdaingLocation() -> AnyPublisher<CLLocationCoordinate2D, ServiceError>
 }
 
 final class RoutesService: RoutesServiceType {
@@ -51,5 +53,15 @@ final class RoutesService: RoutesServiceType {
             }
             .mapError { .error($0) }
             .eraseToAnyPublisher()
+    }
+    
+    func startUpdaingLocation() -> AnyPublisher<CLLocationCoordinate2D, ServiceError> {
+        manager.startUpdatingLocation()
+            .mapError{ .error($0) }
+            .eraseToAnyPublisher()
+    }
+    
+    func stopUpdatingLocation() {
+        manager.stopUpdatingLocation()
     }
 }

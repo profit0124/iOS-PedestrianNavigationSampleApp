@@ -50,7 +50,9 @@ final class SearchDetailViewModel: ObservableObject {
         service.fetch(model)
             .receive(on: DispatchQueue.main)
             .sink { completion in
-                print(completion)
+                if case .failure = completion {
+                    print(completion)
+                }
             } receiveValue: { value in
                 self.state = value
             }

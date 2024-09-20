@@ -14,7 +14,6 @@ struct NavigationModel: Identifiable {
     let description: String
     let pointCoordinate: CLLocationCoordinate2D
     let lineModels: [MKPolyLineModel]
-    
 }
 
 extension NavigationModel: Equatable {
@@ -26,6 +25,21 @@ extension NavigationModel: Equatable {
 extension NavigationModel: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+    }
+}
+
+extension NavigationModel {
+    func getDestination() -> CLLocationCoordinate2D {
+        if let coordinate = lineModels.last?.cooridnates.last {
+            return coordinate
+        }
+        return self.pointCoordinate
+    }
+    
+    func getMinimuDistance(from location: CLLocationCoordinate2D) -> Double {
+        let destinationPoint = getDestination()
+        let shortestPoint = location.getShortestPoint(from: pointCoordinate, to: destinationPoint)
+        return location.getDistance(to: shortestPoint)
     }
 }
 

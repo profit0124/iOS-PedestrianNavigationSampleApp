@@ -9,11 +9,14 @@ import Foundation
 import CoreLocation
 import Combine
 
-final class LocationManager {
-    let manager: CLLocationManager
+class LocationManager: NSObject {
+    private let manager: CLLocationManager
+    var locationPublisher: PassthroughSubject<CLLocationCoordinate2D, DataError>?
     
-    init() {
+    override init() {
         self.manager = CLLocationManager()
+        super.init()
+        self.manager.delegate = self
     }
     
     func requestAuth() {
@@ -36,5 +39,28 @@ final class LocationManager {
             }
         }
         .eraseToAnyPublisher()
+    }
+    
+    func startUpdatingLocation() -> AnyPublisher<CLLocationCoordinate2D, DataError> {
+        self.locationPublisher = .init()
+        self.manager.startUpdatingLocation()
+        return self.locationPublisher!.eraseToAnyPublisher()
+    }
+    
+    func stopUpdatingLocation() {
+        self.manager.stopUpdatingLocation()
+        self.locationPublisher = nil
+    }
+}
+
+extension LocationManager: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let publisher = locationPublisher, let location = locations.first {
+            publisher.send(location.coordinate)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
+        // TODO: 
     }
 }
