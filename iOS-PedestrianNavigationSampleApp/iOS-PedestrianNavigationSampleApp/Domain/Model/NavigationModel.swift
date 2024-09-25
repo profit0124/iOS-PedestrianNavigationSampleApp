@@ -56,7 +56,7 @@ extension NavigationModel {
             let from = coordinates[i]
             let to = coordinates[i+1]
             let point = location.getShortestPoint(from: from, to: to)
-            let distance = location.getDistance(to: to)
+            let distance = location.getDistance(to: point)
             if basisDistance > distance {
                 index = i
                 basisDistance = distance

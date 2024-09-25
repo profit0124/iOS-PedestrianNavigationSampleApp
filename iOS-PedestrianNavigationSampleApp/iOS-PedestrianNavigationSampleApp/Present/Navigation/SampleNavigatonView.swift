@@ -21,7 +21,7 @@ struct SampleNavigatonView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .bottom) {
+        ZStack {
             RouteNavigationMapView(viewModel: viewModel, mapView: $mapView)
                 .ignoresSafeArea()
             Button {
