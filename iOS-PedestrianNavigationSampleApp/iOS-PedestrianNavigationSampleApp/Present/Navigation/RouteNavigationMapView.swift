@@ -29,10 +29,12 @@ struct RouteNavigationMapView: UIViewRepresentable {
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
         // 현재 위치가 변경때마다 PolylineUpdate
-        context.coordinator.updatePolyLine()
-        // TODO: Gesture로 지도 이동 시, Camera update 를 일정시간 막아두기
-        // 현재 위치의 변경때마다 카메라 follow
-        context.coordinator.updateCamera()
+        if !viewModel.isLoading {
+            context.coordinator.updatePolyLine()
+            // TODO: Gesture로 지도 이동 시, Camera update 를 일정시간 막아두기
+            // 현재 위치의 변경때마다 카메라 follow
+            context.coordinator.updateCamera()
+        }
     }
     
     final class Coordinator: NSObject, MKMapViewDelegate {

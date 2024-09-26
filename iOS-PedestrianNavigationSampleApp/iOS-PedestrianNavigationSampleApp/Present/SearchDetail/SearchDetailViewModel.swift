@@ -10,7 +10,7 @@ import Combine
 
 
 final class SearchDetailViewModel: ObservableObject {
-    private let model: SearchResultModel
+    let model: SearchResultModel
     private var service: RoutesService
     
     @Published var state: State?

@@ -15,8 +15,8 @@ struct SampleNavigatonView: View {
     @State private var mapView: MKMapView
     @EnvironmentObject var viewRouter: ViewRouter
     
-    init(_ model: [NavigationModel]) {
-        self._viewModel = .init(wrappedValue: .init(navigationModels: model))
+    init(destination: SearchResultModel, routes: [NavigationModel]) {
+        self._viewModel = .init(wrappedValue: .init(destination: destination, routes: routes))
         self.mapView = .init(frame: .zero)
     }
     
@@ -24,21 +24,42 @@ struct SampleNavigatonView: View {
         ZStack {
             RouteNavigationMapView(viewModel: viewModel, mapView: $mapView)
                 .ignoresSafeArea()
-            Button {
-                viewModel.send(.stopUpdatingLocation)
-                viewRouter.pop()
-            } label: {
-                Text("안내 종료")
-                    .foregroundStyle(.white)
-                    .padding(.vertical, 8)
-                    .frame(maxWidth: .infinity)
-                    .background {
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(.blue)
+            
+            if viewModel.isLoading {
+                VStack {
+                    ProgressView()
+                    Text("경로 재탐색 중")
+                        .foregroundStyle(.white)
+                }
+                .frame(maxWidth: .infinity, maxHeight:.infinity)
+                .background {
+                    Color.black.opacity(0.4)
+                        .ignoresSafeArea()
+                }
+                
+            } else {
+                VStack {
+                    Spacer()
+                    HStack {
+                        Button {
+                            viewModel.send(.stopUpdatingLocation)
+                            viewRouter.pop()
+//                            viewModel.send(.findRoute)
+                        } label: {
+                            Text("종료")
+                                .foregroundStyle(.white)
+                                .padding(.vertical, 8)
+                                .frame(maxWidth: .infinity)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .fill(.blue)
+                                }
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.bottom, 16)
                     }
+                }
             }
-            .padding(.horizontal, 16)
-            .padding(.bottom, 16)
         }
         .onAppear {
             viewModel.send(.startUpdatingLocation)
@@ -46,7 +67,7 @@ struct SampleNavigatonView: View {
         
     }
 }
-
-#Preview {
-    SampleNavigatonView([.init(id: 0, name: "", description: "", pointCoordinate: .init(latitude: 0, longitude: 0), lineModels: [])])
-}
+//
+//#Preview {
+//    SampleNavigatonView([.init(id: 0, name: "", description: "", pointCoordinate: .init(latitude: 0, longitude: 0), lineModels: [])])
+//}
