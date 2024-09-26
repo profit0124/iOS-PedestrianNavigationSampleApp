@@ -12,6 +12,8 @@ import Combine
 class LocationManager: NSObject {
     private let manager: CLLocationManager
     var locationPublisher: PassthroughSubject<CLLocationCoordinate2D, DataError>?
+    var timer: Timer?
+    var timeInterval: TimeInterval = 3
     
     override init() {
         self.manager = CLLocationManager()
@@ -43,24 +45,33 @@ class LocationManager: NSObject {
     
     func startUpdatingLocation() -> AnyPublisher<CLLocationCoordinate2D, DataError> {
         self.locationPublisher = .init()
-        self.manager.startUpdatingLocation()
+        if timer != nil {
+            timer = nil
+        }
+        self.timer = Timer.scheduledTimer(withTimeInterval: self.timeInterval, repeats: true, block: { [weak self] _ in
+            guard let self else { return }
+            if let location = self.manager.location {
+                self.locationPublisher?.send(location.coordinate)
+            }
+        })
         return self.locationPublisher!.eraseToAnyPublisher()
     }
     
     func stopUpdatingLocation() {
-        self.manager.stopUpdatingLocation()
+        self.timer?.invalidate()
+        self.timer = nil
         self.locationPublisher = nil
     }
 }
 
 extension LocationManager: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let publisher = locationPublisher, let location = locations.first {
-            publisher.send(location.coordinate)
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
-        // TODO: 
-    }
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        if let publisher = locationPublisher, let location = locations.first {
+//            publisher.send(location.coordinate)
+//        }
+//    }
+//    
+//    func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
+//        // TODO: 
+//    }
 }

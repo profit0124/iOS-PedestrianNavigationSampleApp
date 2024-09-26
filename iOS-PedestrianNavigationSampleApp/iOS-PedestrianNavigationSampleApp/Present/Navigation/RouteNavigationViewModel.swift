@@ -22,8 +22,8 @@ final class RouteNavigationViewModel: ObservableObject {
     var closePoint: CLLocationCoordinate2D = CLLocationCoordinate2D()
     var distanceToClosePoint: Double = .zero
     var basisCount: Int = 0
-    var maxBasisCount: Int = 20
-    var isLoading: Bool = false
+    var maxBasisCount: Int = 10
+    @Published var isLoading: Bool = false
     
     var inRoute: Bool = true
     
@@ -129,22 +129,22 @@ final class RouteNavigationViewModel: ObservableObject {
         } else if start + 1 == end {
             currentIndex = start
         } else {
-            
+            let middleIndex = (start + end) / 2
             let leftSideFrom = routes[start].pointCoordinate
-            let leftSideTo = routes[end / 2].pointCoordinate
+            let leftSideTo = routes[middleIndex].pointCoordinate
             let leftSideClosedPoint = location.getShortestPoint(from: leftSideFrom, to: leftSideTo)
             let leftSideDistance = location.getDistance(to: leftSideClosedPoint)
             
-            let rightSideFrom = routes[end / 2].pointCoordinate
+            let rightSideFrom = routes[middleIndex].pointCoordinate
             let rightSideTo = routes[end].pointCoordinate
             let rightSideClosedPoint = location.getShortestPoint(from: rightSideFrom, to: rightSideTo)
             let rightSideDistance = location.getDistance(to: rightSideClosedPoint)
             if leftSideDistance < rightSideDistance {
-                searchCurrentIndexByBinarySearch(from: location, start: start, end: end / 2)
+                searchCurrentIndexByBinarySearch(from: location, start: start, end: middleIndex)
                 self.distanceToClosePoint = leftSideDistance
                 self.closePoint = leftSideClosedPoint
             } else {
-                searchCurrentIndexByBinarySearch(from: location, start: end / 2, end: end)
+                searchCurrentIndexByBinarySearch(from: location, start: middleIndex, end: end)
                 self.distanceToClosePoint = rightSideDistance
                 self.closePoint = rightSideClosedPoint
             }
@@ -168,6 +168,7 @@ final class RouteNavigationViewModel: ObservableObject {
                 ),
                 toName: destination.name
             )
+            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: {completion in
                 // TODO: fail 에 대한 처리
             }, receiveValue: { [weak self] routes in
