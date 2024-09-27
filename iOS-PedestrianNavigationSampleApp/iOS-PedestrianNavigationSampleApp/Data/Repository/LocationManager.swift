@@ -9,11 +9,16 @@ import Foundation
 import CoreLocation
 import Combine
 
-final class LocationManager {
-    let manager: CLLocationManager
+class LocationManager: NSObject {
+    private let manager: CLLocationManager
+    var locationPublisher: PassthroughSubject<CLLocation, DataError>?
+    var timer: Timer?
+    var heading: CLLocationDirection?
     
-    init() {
+    override init() {
         self.manager = CLLocationManager()
+        super.init()
+        self.manager.delegate = self
     }
     
     func requestAuth() {
@@ -36,5 +41,44 @@ final class LocationManager {
             }
         }
         .eraseToAnyPublisher()
+    }
+    
+    func startUpdatingLocation(with timeInterval: TimeInterval) -> AnyPublisher<CLLocation, DataError> {
+        self.manager.startUpdatingHeading()
+        self.locationPublisher = .init()
+        if timer != nil {
+            timer = nil
+        }
+        self.timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true, block: { [weak self] _ in
+            guard let self else { return }
+            if let location = self.manager.location, let heading {
+                let locationWithHeading = CLLocation(
+                    coordinate: location.coordinate,
+                    altitude: location.altitude,
+                    horizontalAccuracy: location.horizontalAccuracy,
+                    verticalAccuracy: location.verticalAccuracy,
+                    course: heading,
+                    speed: location.speed,
+                    timestamp: location.timestamp)
+                self.locationPublisher?.send(locationWithHeading)
+            }
+        })
+        return self.locationPublisher!.eraseToAnyPublisher()
+    }
+    
+    func stopUpdatingLocation() {
+        self.timer?.invalidate()
+        self.timer = nil
+        self.locationPublisher = nil
+        self.manager.stopUpdatingHeading()
+    }
+}
+
+extension LocationManager: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        self.heading = newHeading.trueHeading
     }
 }

@@ -10,7 +10,7 @@ import Combine
 
 
 final class SearchDetailViewModel: ObservableObject {
-    private let model: SearchResultModel
+    let model: SearchResultModel
     private var service: RoutesService
     
     @Published var state: State?
@@ -50,7 +50,9 @@ final class SearchDetailViewModel: ObservableObject {
         service.fetch(model)
             .receive(on: DispatchQueue.main)
             .sink { completion in
-                print(completion)
+                if case .failure = completion {
+                    print(completion)
+                }
             } receiveValue: { value in
                 self.state = value
             }

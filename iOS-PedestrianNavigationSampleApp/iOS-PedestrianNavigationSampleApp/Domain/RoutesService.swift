@@ -11,6 +11,14 @@ import Combine
 
 protocol RoutesServiceType {
     func fetch(_ model: SearchResultModel) -> AnyPublisher<SearchDetailViewModel.State, ServiceError>
+    
+    func startUpdaingLocation(with timeInterval: TimeInterval) -> AnyPublisher<CLLocation, ServiceError>
+    func stopUpdatingLocation()
+    func fetchRoutes(
+        fromPoint: CLLocationCoordinate2D,
+        fromName: String,
+        toPoint: CLLocationCoordinate2D,
+        toName: String) -> AnyPublisher<[NavigationModel], ServiceError>
 }
 
 final class RoutesService: RoutesServiceType {
@@ -51,5 +59,35 @@ final class RoutesService: RoutesServiceType {
             }
             .mapError { .error($0) }
             .eraseToAnyPublisher()
+    }
+    
+    func startUpdaingLocation(with timeInterval: TimeInterval) -> AnyPublisher<CLLocation, ServiceError> {
+        manager.startUpdatingLocation(with: timeInterval)
+            .mapError{ .error($0) }
+            .eraseToAnyPublisher()
+    }
+    
+    func stopUpdatingLocation() {
+        manager.stopUpdatingLocation()
+    }
+    
+    func fetchRoutes(
+        fromPoint: CLLocationCoordinate2D,
+        fromName: String,
+        toPoint: CLLocationCoordinate2D,
+        toName: String) -> AnyPublisher<[NavigationModel], ServiceError> {
+            let requestDTO = RoutesDTO.RequestDTO.PostRoutes(
+                startX: fromPoint.longitude,
+                startY: fromPoint.latitude,
+                endX: toPoint.longitude,
+                endY: toPoint.latitude,
+                startName: fromName.utf8Encode() ?? "",
+                endName: toName.utf8Encode() ?? "")
+            return self.repository.fetchRoutes(requestDTO)
+                .compactMap{
+                    $0.toSearchDetailModel()?.routes
+                }
+                .mapError{ .error($0) }
+                .eraseToAnyPublisher()
     }
 }
