@@ -50,7 +50,7 @@ struct SearchDetailView: View {
             }
             .overlay(alignment: .bottom) {
                 Button {
-                    viewRouter.push(.navigation(model: state.routes))
+                    viewRouter.push(.navigation(destination: viewModel.model, routes: state.routes))
                 } label: {
                     Text("안내 시작")
                         .foregroundStyle(.white)

@@ -49,6 +49,9 @@
 		31D6C1A12C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D6C1A02C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppTests.swift */; };
 		31D6C1AB2C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D6C1AA2C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppUITests.swift */; };
 		31D6C1AD2C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D6C1AC2C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppUITestsLaunchTests.swift */; };
+		31EE14322C9BAFAD00A46B15 /* RouteNavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EE14312C9BAFAD00A46B15 /* RouteNavigationViewModel.swift */; };
+		31EE14342C9BC24600A46B15 /* RouteNavigationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EE14332C9BC24600A46B15 /* RouteNavigationMapView.swift */; };
+		31EE14382C9CF65D00A46B15 /* CLLocationCoordinate2D+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EE14372C9CF65D00A46B15 /* CLLocationCoordinate2D+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +118,9 @@
 		31D6C1A62C9191BA00AA00EE /* iOS-PedestrianNavigationSampleAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-PedestrianNavigationSampleAppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31D6C1AA2C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_PedestrianNavigationSampleAppUITests.swift; sourceTree = "<group>"; };
 		31D6C1AC2C9191BA00AA00EE /* iOS_PedestrianNavigationSampleAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_PedestrianNavigationSampleAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		31EE14312C9BAFAD00A46B15 /* RouteNavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteNavigationViewModel.swift; sourceTree = "<group>"; };
+		31EE14332C9BC24600A46B15 /* RouteNavigationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteNavigationMapView.swift; sourceTree = "<group>"; };
+		31EE14372C9CF65D00A46B15 /* CLLocationCoordinate2D+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,7 +170,6 @@
 		318D0EF32C92817E00E6854C /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				318D0F212C92C75900E6854C /* Extension */,
 				318D0F032C92B39800E6854C /* ServiceError.swift */,
 				318D0EF42C92819000E6854C /* ViewRouter.swift */,
 				318D0EF82C92873900E6854C /* NavigationDestination.swift */,
@@ -244,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				318D0F222C92C76300E6854C /* String+.swift */,
+				31EE14372C9CF65D00A46B15 /* CLLocationCoordinate2D+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -280,6 +286,8 @@
 		31A3EDAA2C92715000223179 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				31EE14312C9BAFAD00A46B15 /* RouteNavigationViewModel.swift */,
+				31EE14332C9BC24600A46B15 /* RouteNavigationMapView.swift */,
 				31A3EDB12C92717200223179 /* SampleNavigatonView.swift */,
 			);
 			path = Navigation;
@@ -308,9 +316,9 @@
 		31D6C18E2C9191B800AA00EE /* iOS-PedestrianNavigationSampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				31EE14352C9CF62B00A46B15 /* Shared */,
 				3180A62B2C91938C00558CBE /* Info.plist */,
 				31D6C1BD2C91928800AA00EE /* App */,
-				31D6C1BC2C91927600AA00EE /* Resources */,
 				31D6C1BB2C91926F00AA00EE /* Data */,
 				31D6C1BA2C91926800AA00EE /* Domain */,
 				31D6C1B92C91925E00AA00EE /* Present */,
@@ -392,6 +400,15 @@
 				31D6C1912C9191B800AA00EE /* ContentView.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		31EE14352C9CF62B00A46B15 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				318D0F212C92C75900E6854C /* Extension */,
+				31D6C1BC2C91927600AA00EE /* Resources */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -546,9 +563,11 @@
 				318D0F102C92B78700E6854C /* SearchResponseDTO.swift in Sources */,
 				318D0F1C2C92C27700E6854C /* SearchTarget.swift in Sources */,
 				31D6C1902C9191B800AA00EE /* iOS_PedestrianNavigationSampleAppApp.swift in Sources */,
+				31EE14382C9CF65D00A46B15 /* CLLocationCoordinate2D+.swift in Sources */,
 				31A3EDB02C92716900223179 /* SearchDetailView.swift in Sources */,
 				317143412C93DD84007411B7 /* RoutesRepository.swift in Sources */,
 				3180A62E2C91943500558CBE /* Constant.swift in Sources */,
+				31EE14322C9BAFAD00A46B15 /* RouteNavigationViewModel.swift in Sources */,
 				318D0F1E2C92C28000E6854C /* SearchRepository.swift in Sources */,
 				317143382C93D19C007411B7 /* RoutesDTO.swift in Sources */,
 				318D0F132C92BB6B00E6854C /* HttpMethod.swift in Sources */,
@@ -557,6 +576,7 @@
 				318D0F002C929F4B00E6854C /* SearchResultModel.swift in Sources */,
 				31A3EDAE2C92716300223179 /* SearchResultView.swift in Sources */,
 				318D0EF92C92873900E6854C /* NavigationDestination.swift in Sources */,
+				31EE14342C9BC24600A46B15 /* RouteNavigationMapView.swift in Sources */,
 				318D0F042C92B39800E6854C /* ServiceError.swift in Sources */,
 				318D0F082C92B4E300E6854C /* DataError.swift in Sources */,
 				317143432C93DF48007411B7 /* RoutesService.swift in Sources */,
