@@ -11,9 +11,9 @@ import Combine
 
 class LocationManager: NSObject {
     private let manager: CLLocationManager
-    var locationPublisher: PassthroughSubject<CLLocationCoordinate2D, DataError>?
+    var locationPublisher: PassthroughSubject<CLLocation, DataError>?
     var timer: Timer?
-    var timeInterval: TimeInterval = 3
+    var heading: CLLocationDirection?
     
     override init() {
         self.manager = CLLocationManager()
@@ -43,15 +43,24 @@ class LocationManager: NSObject {
         .eraseToAnyPublisher()
     }
     
-    func startUpdatingLocation() -> AnyPublisher<CLLocationCoordinate2D, DataError> {
+    func startUpdatingLocation(with timeInterval: TimeInterval) -> AnyPublisher<CLLocation, DataError> {
+        self.manager.startUpdatingHeading()
         self.locationPublisher = .init()
         if timer != nil {
             timer = nil
         }
-        self.timer = Timer.scheduledTimer(withTimeInterval: self.timeInterval, repeats: true, block: { [weak self] _ in
+        self.timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true, block: { [weak self] _ in
             guard let self else { return }
-            if let location = self.manager.location {
-                self.locationPublisher?.send(location.coordinate)
+            if let location = self.manager.location, let heading {
+                let locationWithHeading = CLLocation(
+                    coordinate: location.coordinate,
+                    altitude: location.altitude,
+                    horizontalAccuracy: location.horizontalAccuracy,
+                    verticalAccuracy: location.verticalAccuracy,
+                    course: heading,
+                    speed: location.speed,
+                    timestamp: location.timestamp)
+                self.locationPublisher?.send(locationWithHeading)
             }
         })
         return self.locationPublisher!.eraseToAnyPublisher()
@@ -61,17 +70,15 @@ class LocationManager: NSObject {
         self.timer?.invalidate()
         self.timer = nil
         self.locationPublisher = nil
+        self.manager.stopUpdatingHeading()
     }
 }
 
 extension LocationManager: CLLocationManagerDelegate {
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        if let publisher = locationPublisher, let location = locations.first {
-//            publisher.send(location.coordinate)
-//        }
-//    }
-//    
-//    func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
-//        // TODO: 
-//    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        self.heading = newHeading.trueHeading
+    }
 }

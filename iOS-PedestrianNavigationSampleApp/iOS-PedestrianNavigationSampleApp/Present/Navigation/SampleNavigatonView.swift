@@ -39,14 +39,33 @@ struct SampleNavigatonView: View {
                 
             } else {
                 VStack {
+                    VStack {
+                        if viewModel.isFinished {
+                            Text("목적지 도착")
+                        } else {
+                            Text("목적지까지 거리 : \(viewModel.finishDistance)")
+                            Text("경로 재탐색 횟수 : \(viewModel.countOfReroute)")
+                            Text("경로와의 거리 : \(viewModel.distanceToClosePoint) / 20")
+                            Text("경로이탈 카운트 : \(viewModel.countOfOutOfRoute)")
+                            if let speed = viewModel.currentLocation?.speed {
+                                Text("speed: \(speed)")
+                            }
+                        }
+                    }
+                    .foregroundStyle(.white)
+                    .padding()
+                    .background {
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(.blue)
+                    }
+                    
                     Spacer()
                     HStack {
                         Button {
                             viewModel.send(.stopUpdatingLocation)
                             viewRouter.pop()
-//                            viewModel.send(.findRoute)
                         } label: {
-                            Text("종료")
+                            Text(viewModel.isFinished ? "뒤로가기" : "종료")
                                 .foregroundStyle(.white)
                                 .padding(.vertical, 8)
                                 .frame(maxWidth: .infinity)
@@ -55,9 +74,21 @@ struct SampleNavigatonView: View {
                                         .fill(.blue)
                                 }
                         }
-                        .padding(.horizontal, 16)
                         .padding(.bottom, 16)
+                        
+                        Button {
+                            viewModel.userTrackingMode.toggle()
+                        } label: {
+                            Image(systemName: "scope")
+                                .foregroundStyle(.white)
+                                .padding()
+                                .background {
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .fill(viewModel.userTrackingMode ? .blue : .gray)
+                                }
+                        }
                     }
+                    .padding(.horizontal, 16)
                 }
             }
         }
@@ -67,7 +98,3 @@ struct SampleNavigatonView: View {
         
     }
 }
-//
-//#Preview {
-//    SampleNavigatonView([.init(id: 0, name: "", description: "", pointCoordinate: .init(latitude: 0, longitude: 0), lineModels: [])])
-//}

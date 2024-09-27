@@ -22,7 +22,8 @@ struct RouteNavigationMapView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> MKMapView {
         mapView.delegate = context.coordinator
-        mapView.showsUserLocation = true
+        mapView.showsUserLocation = false
+        mapView.addAnnotation(GoalAnnotation(coordinate: .init(latitude: viewModel.destination.lat, longitude: viewModel.destination.long)))
         context.coordinator.addPolyLine()
         return mapView
     }
@@ -33,12 +34,15 @@ struct RouteNavigationMapView: UIViewRepresentable {
             context.coordinator.updatePolyLine()
             // TODO: Gesture로 지도 이동 시, Camera update 를 일정시간 막아두기
             // 현재 위치의 변경때마다 카메라 follow
-            context.coordinator.updateCamera()
+            context.coordinator.updateAnnotations()
+            context.coordinator.userTrackingMode()
         }
     }
     
     final class Coordinator: NSObject, MKMapViewDelegate {
         var parent: RouteNavigationMapView
+        var close: CloseAnnotation = .init(coordinate: CLLocationCoordinate2D())
+        var user: UserAnnotation = .init(coordinate: CLLocationCoordinate2D())
         
         init(parent: RouteNavigationMapView) {
             self.parent = parent
@@ -59,7 +63,21 @@ struct RouteNavigationMapView: UIViewRepresentable {
             parent.mapView.overlays.forEach{
                 parent.mapView.removeOverlay($0)
             }
-            addPolyLine()
+            
+            if !parent.viewModel.isFinished {
+                addPolyLine()
+            }
+        }
+        
+        func updateAnnotations() {
+            parent.mapView.removeAnnotation(close)
+            parent.mapView.removeAnnotation(user)
+            
+            close.coordinate = parent.viewModel.closePoint
+            user.coordinate = parent.viewModel.currentLocation?.coordinate ?? CLLocationCoordinate2D()
+            
+            parent.mapView.addAnnotation(close)
+            parent.mapView.addAnnotation(user)
         }
         
         func mapView(_ mapView: MKMapView, rendererFor overlay: any MKOverlay) -> MKOverlayRenderer {
@@ -76,9 +94,75 @@ struct RouteNavigationMapView: UIViewRepresentable {
         
         func updateCamera() {
             if let location = parent.viewModel.currentLocation {
-                let region = MKCoordinateRegion(center: location, span: .init(latitudeDelta: 0.001, longitudeDelta: 0.001))
-                parent.mapView.setRegion(region, animated: true)
+                let camera = MKMapCamera()
+                camera.centerCoordinate = location.coordinate
+                camera.heading = location.course
+                camera.centerCoordinateDistance = location.altitude * 3
+                parent.mapView.camera = camera
             }
+        }
+        
+        func userTrackingMode() {
+            if parent.viewModel.userTrackingMode, let coordinator = parent.viewModel.currentLocation {
+                let camera = MKMapCamera()
+                camera.centerCoordinate = coordinator.coordinate
+                camera.heading = coordinator.course
+                camera.centerCoordinateDistance = 500
+                parent.mapView.camera = camera
+            }
+        }
+        
+        func mapView(_ mapView: MKMapView, viewFor annotation: any MKAnnotation) -> MKAnnotationView? {
+            switch annotation {
+            case let goal as GoalAnnotation:
+                let view = MKAnnotationView(frame: .init(x: 0, y: 0, width: 40, height: 40))
+                view.image = UIImage(systemName: goal.imageName)
+                return view
+            case let close as CloseAnnotation:
+                let view = MKAnnotationView(frame: .init(x: 0, y: 0, width: 40, height: 40))
+                view.image = UIImage(systemName: close.imageName)
+                return view
+            case let user as UserAnnotation:
+                let view = MKAnnotationView(frame: .init(x: 0, y: 0, width: 40, height: 40))
+                view.image = UIImage(systemName: user.imageName)
+                return view
+            default:
+                return nil
+            }
+        
+            
         }
     }
 }
+
+
+class GoalAnnotation: NSObject, MKAnnotation {
+    let imageName: String = "house.circle"
+    var coordinate: CLLocationCoordinate2D
+    
+    init(coordinate: CLLocationCoordinate2D) {
+        self.coordinate = coordinate
+        super.init()
+    }
+}
+
+class CloseAnnotation: NSObject, MKAnnotation {
+    let imageName: String = "person.crop.circle.dashed"
+    var coordinate: CLLocationCoordinate2D
+    
+    init(coordinate: CLLocationCoordinate2D) {
+        self.coordinate = coordinate
+        super.init()
+    }
+}
+
+class UserAnnotation: NSObject, MKAnnotation {
+    let imageName: String = "figure.walk"
+    var coordinate: CLLocationCoordinate2D
+    
+    init(coordinate: CLLocationCoordinate2D) {
+        self.coordinate = coordinate
+        super.init()
+    }
+}
+
