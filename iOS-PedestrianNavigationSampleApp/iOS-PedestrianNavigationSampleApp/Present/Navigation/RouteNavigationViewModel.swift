@@ -10,9 +10,19 @@ import MapKit
 import Combine
 
 final class RouteNavigationViewModel: ObservableObject {
+    let speech: SpeechHelper = .init()
     let destination: SearchResultModel
     private var routes: [NavigationModel]
-    var currentIndex: Int = 0
+    var currentIndex: Int = 0 {
+        didSet {
+            self.setDisplayMessage()
+        }
+    }
+    var maxCurrentIndex: Int = 0 {
+        didSet {
+            self.setVoiceMessage()
+        }
+    }
     @Published var currentLocation: CLLocation?
     @Published var isFinished: Bool = false
     @Published var userTrackingMode: Bool = true
@@ -24,7 +34,7 @@ final class RouteNavigationViewModel: ObservableObject {
     // 경로에서 가장 가까운 좌표
     var closePoint: CLLocationCoordinate2D = CLLocationCoordinate2D()
     // 경로에서 가장 가까운좌표와 현재 나의 위치와의 거리
-    var distanceToClosePoint: Double = .zero
+    var distanceToClosePoint: Int = .zero
     // 경로 이탈 횟수 (20 이상)
     var countOfOutOfRoute: Int = 0
     // 경로 이탈 횟수 기준
@@ -37,13 +47,17 @@ final class RouteNavigationViewModel: ObservableObject {
     // MARK: Test용 String
     // 목적지까지와의 거리
     var finishDistance: Double = .zero
+    var distanceToNextPoint: Double = .zero
     // 경로 재요청 횟수
     var countOfReroute: Int = 0
     
+    var currentRouteCoordinates: [CLLocationCoordinate2D] = []
+    
+    
     var currentPolyline: MKPolyline? {
-        guard let coordinate = currentLocation?.coordinate else { return nil }
-        let coordinates = routes[currentIndex].getCoordinates(at: coordinate)
-        return MKPolyline(coordinates: coordinates, count: coordinates.count)
+//        guard let coordinate = currentLocation?.coordinate else { return nil }
+//        let coordinates = routes[currentIndex].getCoordinates(at: coordinate)
+        return MKPolyline(coordinates: currentRouteCoordinates, count: currentRouteCoordinates.count)
         
     }
     var nextPolylines: MKPolyline {
@@ -55,11 +69,22 @@ final class RouteNavigationViewModel: ObservableObject {
         return MKPolyline(coordinates: coordinates, count: coordinates.count)
     }
     
+    // MARK: Message
+    // CurrentIndex 의 Model의 끝 점까지의 남은거리
+    var remainDistanceInCurrentNavigationModel: Double = .zero
+    // 음성 안내용 메시지
+    var voiceMessage: String = ""
+    // 네비게이션 화면에 표시될 메시지
+    // 실시간 업데이트(남은거리 포함)
+    // 예 ) 10m 후 우회전(next point description)
+    var displayMessage: String = ""
+    
     init(destination: SearchResultModel, routes: [NavigationModel]) {
         self.routeService = .init()
         self.destination = destination
         self.routes = routes
         self.currentIndex = 0
+        self.setVoiceMessage()
     }
     
     enum Action {
@@ -102,6 +127,12 @@ final class RouteNavigationViewModel: ObservableObject {
                     self.stopUpdatingLocation()
                     self.isFinished = true
                 } else {
+                    let (currentRoutes, distance) = routes[currentIndex].getCurrentStatus(at: $0.coordinate)
+                    self.currentRouteCoordinates = currentRoutes
+                    self.closePoint = currentRoutes.first ?? CLLocationCoordinate2D()
+                    self.distanceToClosePoint = distance
+                    let nextIndex = currentIndex < routes.count - 1 ? currentIndex + 1 : currentIndex
+                    self.distanceToNextPoint = $0.coordinate.getDistance(to: routes[nextIndex].pointCoordinate)
                     // TODO: 현재 Index 확인 후, 떨어진 거리를 이용하여 경로 재탐색
                     // 내 위치를 받아온 순간 경로와 가장 짧은 거리가 20m 이상인 경우 기준카운트 증가
                     if self.distanceToClosePoint > 20 {
@@ -148,9 +179,10 @@ final class RouteNavigationViewModel: ObservableObject {
     // 개선 BinarySearch
     private func searchCurrentIndexByBinarySearch(from location: CLLocationCoordinate2D, start: Int, end: Int) {
         if start == end || start + 1 == end {
+            if currentIndex < start {
+                self.maxCurrentIndex = start
+            }
             currentIndex = start
-            self.closePoint = routes[start].getMiddleIndex(at: location).1
-            self.distanceToClosePoint = location.getDistance(to: self.closePoint)
         } else {
             let middleIndex = (start + end) / 2
             let leftSideFrom = routes[start].pointCoordinate
@@ -164,12 +196,8 @@ final class RouteNavigationViewModel: ObservableObject {
             let rightSideDistance = location.getDistance(to: rightSideClosedPoint)
             if leftSideDistance < rightSideDistance {
                 searchCurrentIndexByBinarySearch(from: location, start: start, end: middleIndex)
-                self.distanceToClosePoint = leftSideDistance
-                self.closePoint = leftSideClosedPoint
             } else {
                 searchCurrentIndexByBinarySearch(from: location, start: middleIndex, end: end)
-                self.distanceToClosePoint = rightSideDistance
-                self.closePoint = rightSideClosedPoint
             }
         }
     }
@@ -212,5 +240,18 @@ final class RouteNavigationViewModel: ObservableObject {
         self.distanceToClosePoint = .zero
         self.countOfOutOfRoute = 0
         self.routes = []
+    }
+    
+    private func setDisplayMessage() {
+        if currentIndex < routes.count - 1 {
+            self.displayMessage = "\(self.distanceToNextPoint) 이동 후 \(routes[currentIndex + 1].turnType.getTitle())"
+        } else {
+            self.displayMessage = "목적지 도착"
+        }
+    }
+    
+    private func setVoiceMessage() {
+        self.voiceMessage = routes[maxCurrentIndex].turnType.getTitle()
+        speech.speak(self.voiceMessage)
     }
 }

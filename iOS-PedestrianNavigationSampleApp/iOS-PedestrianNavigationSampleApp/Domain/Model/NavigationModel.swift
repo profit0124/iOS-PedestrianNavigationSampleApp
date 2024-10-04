@@ -8,11 +8,14 @@
 import Foundation
 import MapKit
 
+
+
 struct NavigationModel: Identifiable {
     let id: Int
     let name: String
     let description: String
     let pointCoordinate: CLLocationCoordinate2D
+    let turnType: TurnType
     let lineModels: [MKPolyLineModel]
 }
 
@@ -81,13 +84,68 @@ extension NavigationModel {
             .map { $0.element }
         return result + additionalCoordinates
     }
+    
+    // MARK: 진행 중인 Polyline 에 사용할 Coordinates 와 Distance를 반환
+    func getCurrentStatus(at location: CLLocationCoordinate2D) -> ([CLLocationCoordinate2D], Int) {
+        let currentIndex = findIndex(at: location, start: 0, end: lineModels.count - 1)
+        
+        // 현재 Linemodels 의 Index 로 [Coordinates 반환, distance 반환]
+        let currentLineModel = lineModels[currentIndex]
+        let (currentRoutes, distance) = currentLineModel.getCurrentStatus(location)
+        let filteredRoutes = lineModels
+            .enumerated()
+            .filter({
+                $0.offset > currentIndex
+            })
+            .flatMap({
+                $0.element.cooridnates
+            })
+        let resultRoutes = currentRoutes + filteredRoutes
+        return (resultRoutes,distance)
+    }
+    
+    private func findIndex(at location: CLLocationCoordinate2D, start: Int, end: Int) -> Int {
+        
+        let middle = (start + end) / 2
+        if middle == start {
+            return start
+        }
+        
+        let leftStartPoint = lineModels[start].cooridnates.first
+        let leftEndPoint = lineModels[middle].cooridnates.last
+        let leftDistnce = location.getShortestDistance(from: leftStartPoint!, to: leftEndPoint!)
+        
+        let rightStartPoint = lineModels[middle].cooridnates.first!
+        let rightEndPoint = lineModels[end].cooridnates.last!
+        let rightDistance = location.getShortestDistance(from: rightStartPoint, to: rightEndPoint)
+        
+        if leftDistnce < rightDistance {
+            return findIndex(at: location, start: start, end: middle)
+        } else {
+            return findIndex(at: location, start: middle, end: end)
+        }
+    }
 }
 
 struct MKPolyLineModel: Identifiable {
     let id: Int
     let name: String
     let description: String
-    let cooridnates: [CLLocationCoordinate2D]
+    let cooridnates: RouteCoordinates
+    let distance: Int
+    
+    func getDistance(at location: CLLocationCoordinate2D) -> Double {
+        var result = Double.greatestFiniteMagnitude
+        if let from = cooridnates.first, let to = cooridnates.last {
+            let point = location.getShortestPoint(from: from, to: to)
+            result = location.getDistance(to: point)
+        }
+        return result
+    }
+    
+    func getCurrentStatus(_ location: CLLocationCoordinate2D) -> ([CLLocationCoordinate2D], Int) {
+        return location.getCurrentRouteAndDistance(with: cooridnates, from: 0, to: cooridnates.count - 1)
+    }
 }
 
 extension MKPolyLineModel: Equatable {
