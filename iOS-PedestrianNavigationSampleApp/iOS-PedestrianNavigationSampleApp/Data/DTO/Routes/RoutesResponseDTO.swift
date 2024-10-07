@@ -113,6 +113,7 @@ extension RoutesDTO.ResponseDTO.PostRoutes {
         var id = -1
         var name = ""
         var description = ""
+        var turnType = TurnType.none
         var pointCoordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
         var lineModels: [MKPolyLineModel] = []
         /// Point type 의 Feature 로 시작 <-> Point Type 의 Feature로 종료
@@ -133,6 +134,7 @@ extension RoutesDTO.ResponseDTO.PostRoutes {
                         name: name,
                         description: description,
                         pointCoordinate: pointCoordinate,
+                        turnType: turnType,
                         lineModels: lineModels))
                     lineModels = []
                 }
@@ -140,6 +142,7 @@ extension RoutesDTO.ResponseDTO.PostRoutes {
                 id = pointProperties.pointIndex
                 name = pointProperties.name
                 description = pointProperties.description
+                turnType = .init(rawValue: pointProperties.turnType) ?? .none
                 
                 switch $0.geometry.coordinates {
                 case .point(let array):
@@ -156,13 +159,13 @@ extension RoutesDTO.ResponseDTO.PostRoutes {
                     let coordinate = array.map {
                         CLLocationCoordinate2D(latitude: $0[1], longitude: $0[0])
                     }
-                    let lineModel = MKPolyLineModel(id: linePorperties.lineIndex, name: linePorperties.name, description: linePorperties.description, cooridnates: coordinate)
+                    let lineModel = MKPolyLineModel(id: linePorperties.lineIndex, name: linePorperties.name, description: linePorperties.description, cooridnates: coordinate, distance: linePorperties.distance)
                     lineModels.append(lineModel)
                 }
             }
         }
         
-        routes.append(.init(id: id, name: name, description: description, pointCoordinate: pointCoordinate, lineModels: []))
+        routes.append(.init(id: id, name: name, description: description, pointCoordinate: pointCoordinate, turnType: turnType, lineModels: []))
         
         return .init(
             totalDistance: totalDistance,

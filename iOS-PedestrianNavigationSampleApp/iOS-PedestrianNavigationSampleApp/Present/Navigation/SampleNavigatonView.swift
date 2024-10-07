@@ -58,7 +58,22 @@ struct SampleNavigatonView: View {
                         RoundedRectangle(cornerRadius: 8)
                             .fill(.blue)
                     }
-                    
+                    VStack {
+                        Text(viewModel.displayMessage)
+                            .foregroundStyle(.white)
+                            .padding()
+                            .background {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(.red)
+                            }
+                        Text(viewModel.voiceMessage)
+                            .foregroundStyle(.white)
+                            .padding()
+                            .background {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(.blue)
+                            }
+                    }
                     Spacer()
                     HStack {
                         Button {
