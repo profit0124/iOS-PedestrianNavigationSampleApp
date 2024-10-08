@@ -10,10 +10,20 @@ import CoreLocation
 
 struct ContentView: View {
     
-    @StateObject private var router = ViewRouter()
+    @EnvironmentObject private var router: ViewRouter
     
     var body: some View {
-            SearchView()
+        VStack(spacing: 16) {
+            Button("TmapSearch") {
+                router.push(.search)
+            }
+            .buttonStyle(RoundedRectangleButtonStyle())
+
+            Button("CoreMotion Test") {
+                router.push(.coremotionTest)
+            }
+            .buttonStyle(RoundedRectangleButtonStyle())
+        }
     }
 }
 
