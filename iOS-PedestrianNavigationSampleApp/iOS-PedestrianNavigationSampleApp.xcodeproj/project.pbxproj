@@ -45,6 +45,9 @@
 		31A3EDAE2C92716300223179 /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A3EDAD2C92716300223179 /* SearchResultView.swift */; };
 		31A3EDB02C92716900223179 /* SearchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A3EDAF2C92716900223179 /* SearchDetailView.swift */; };
 		31A3EDB22C92717200223179 /* SampleNavigatonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A3EDB12C92717200223179 /* SampleNavigatonView.swift */; };
+		31D0210B2CB3C5120018A9FF /* CoremotionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D0210A2CB3C5120018A9FF /* CoremotionViewModel.swift */; };
+		31D0210F2CB3C57D0018A9FF /* CoreMotionTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D0210E2CB3C57D0018A9FF /* CoreMotionTestView.swift */; };
+		31D021112CB3C6370018A9FF /* RoundedRectangleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D021102CB3C6370018A9FF /* RoundedRectangleButtonStyle.swift */; };
 		31D6C1902C9191B800AA00EE /* iOS_PedestrianNavigationSampleAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D6C18F2C9191B800AA00EE /* iOS_PedestrianNavigationSampleAppApp.swift */; };
 		31D6C1922C9191B800AA00EE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D6C1912C9191B800AA00EE /* ContentView.swift */; };
 		31D6C1942C9191B900AA00EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31D6C1932C9191B900AA00EE /* Assets.xcassets */; };
@@ -114,6 +117,9 @@
 		31A3EDAD2C92716300223179 /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
 		31A3EDAF2C92716900223179 /* SearchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailView.swift; sourceTree = "<group>"; };
 		31A3EDB12C92717200223179 /* SampleNavigatonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleNavigatonView.swift; sourceTree = "<group>"; };
+		31D0210A2CB3C5120018A9FF /* CoremotionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoremotionViewModel.swift; sourceTree = "<group>"; };
+		31D0210E2CB3C57D0018A9FF /* CoreMotionTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMotionTestView.swift; sourceTree = "<group>"; };
+		31D021102CB3C6370018A9FF /* RoundedRectangleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangleButtonStyle.swift; sourceTree = "<group>"; };
 		31D6C18C2C9191B800AA00EE /* iOS-PedestrianNavigationSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-PedestrianNavigationSampleApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31D6C18F2C9191B800AA00EE /* iOS_PedestrianNavigationSampleAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_PedestrianNavigationSampleAppApp.swift; sourceTree = "<group>"; };
 		31D6C1912C9191B800AA00EE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -309,6 +315,15 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
+		31D021092CB3C4FE0018A9FF /* CoreMotionTest */ = {
+			isa = PBXGroup;
+			children = (
+				31D0210A2CB3C5120018A9FF /* CoremotionViewModel.swift */,
+				31D0210E2CB3C57D0018A9FF /* CoreMotionTestView.swift */,
+			);
+			path = CoreMotionTest;
+			sourceTree = "<group>";
+		};
 		31D6C1832C9191B800AA00EE = {
 			isa = PBXGroup;
 			children = (
@@ -371,6 +386,7 @@
 		31D6C1B92C91925E00AA00EE /* Present */ = {
 			isa = PBXGroup;
 			children = (
+				31D021092CB3C4FE0018A9FF /* CoreMotionTest */,
 				31A3EDAA2C92715000223179 /* Navigation */,
 				31A3EDA92C92714A00223179 /* SearchDetail */,
 				31A3EDA82C92713600223179 /* SearchResult */,
@@ -424,6 +440,7 @@
 				318D0F212C92C75900E6854C /* Extension */,
 				31D6C1BC2C91927600AA00EE /* Resources */,
 				317E9D222CACE2C200134B28 /* SpeechHelper.swift */,
+				31D021102CB3C6370018A9FF /* RoundedRectangleButtonStyle.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -574,15 +591,18 @@
 				317143502C941C40007411B7 /* NavigationModel.swift in Sources */,
 				317143452C93E3AB007411B7 /* SearchDetailViewModel.swift in Sources */,
 				3171434E2C940B23007411B7 /* SearchDetailMapView.swift in Sources */,
+				31D021112CB3C6370018A9FF /* RoundedRectangleButtonStyle.swift in Sources */,
 				318D0F252C92D85900E6854C /* SearchMapViewRepresentable.swift in Sources */,
 				3171433F2C93DD7A007411B7 /* RoutesTarget.swift in Sources */,
 				318D0F152C92BBA600E6854C /* TargetType.swift in Sources */,
 				31D6C1922C9191B800AA00EE /* ContentView.swift in Sources */,
 				318D0F232C92C76300E6854C /* String+.swift in Sources */,
+				31D0210B2CB3C5120018A9FF /* CoremotionViewModel.swift in Sources */,
 				318D0F0E2C92B78100E6854C /* SearchRequestDTO.swift in Sources */,
 				318D0F102C92B78700E6854C /* SearchResponseDTO.swift in Sources */,
 				318D0F1C2C92C27700E6854C /* SearchTarget.swift in Sources */,
 				31D6C1902C9191B800AA00EE /* iOS_PedestrianNavigationSampleAppApp.swift in Sources */,
+				31D0210F2CB3C57D0018A9FF /* CoreMotionTestView.swift in Sources */,
 				31EE14382C9CF65D00A46B15 /* CLLocationCoordinate2D+.swift in Sources */,
 				31A3EDB02C92716900223179 /* SearchDetailView.swift in Sources */,
 				317143412C93DD84007411B7 /* RoutesRepository.swift in Sources */,
