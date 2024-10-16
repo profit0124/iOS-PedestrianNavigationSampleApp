@@ -13,6 +13,7 @@ enum NavigationDestination: Hashable {
     case searchDetail(selectItem: SearchResultModel)
     case navigation(destination: SearchResultModel, routes: [NavigationModel])
     case coremotionTest
+    case mapboxnavigation(model: SearchResultModel)
 }
 
 extension NavigationDestination {
@@ -28,6 +29,8 @@ extension NavigationDestination {
             SampleNavigatonView(destination: destination, routes: routes)
         case .coremotionTest:
             CoreMotionTestView()
+        case let .mapboxnavigation(model):
+            MapboxNavigationView(model)
         }
     }
 }

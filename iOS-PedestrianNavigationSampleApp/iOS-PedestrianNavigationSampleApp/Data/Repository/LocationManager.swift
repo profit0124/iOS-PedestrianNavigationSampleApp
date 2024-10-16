@@ -24,7 +24,7 @@ class LocationManager: NSObject {
         self.motionManager = CMMotionManager()
         super.init()
         self.locationManager.delegate = self
-        
+        self.locationManager.activityType = .fitness
         self.motionManager.startGyroUpdates()
         self.motionManager.startAccelerometerUpdates()
     }
