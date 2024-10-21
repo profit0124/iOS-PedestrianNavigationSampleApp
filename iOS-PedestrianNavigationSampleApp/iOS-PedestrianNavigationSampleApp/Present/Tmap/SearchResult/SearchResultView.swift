@@ -82,7 +82,8 @@ struct SearchResultView: View {
         }
         .overlay(alignment: .trailing) {
             Button(action: {
-                router.push(.searchDetail(selectItem: result))
+                router.push(.mapboxnavigation(model: result))
+//                router.push(.searchDetail(selectItem: result))
             }, label: {
                 Image(systemName: "magnifyingglass")
                     .foregroundStyle(Color.white)
