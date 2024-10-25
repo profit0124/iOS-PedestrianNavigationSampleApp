@@ -9,8 +9,15 @@ import Foundation
 import MapKit
 import Combine
 
-@MainActor
-final class SearchResultViewModel: ObservableObject {
+protocol SearchResultViewModelProtocol: ObservableObject {
+    var searchText: String { get set }
+    var isLoading: Bool { get }
+    var results: [SearchResultModel] { get set }
+    
+    func fetch()
+}
+
+final class SearchResultViewModel: SearchResultViewModelProtocol {
     @Published var searchText: String
     @Published var isLoading: Bool = false
     @Published var results: [SearchResultModel] = []
@@ -21,34 +28,47 @@ final class SearchResultViewModel: ObservableObject {
     
     init(searchText: String) {
         self.searchText = searchText
-        
         self.service = SearchService()
     }
     
-    enum Action {
-        case onAppear
-        case fetchData
-    }
-    
-    func send(_ action: Action) {
-        switch action {
-        case .onAppear:
-            onAppear()
-            
-        case .fetchData:
-            fetch()
-        }
-    }
-    
-    func onAppear() {
-        isLoading = true
-    }
-    
-    private func fetch() {
+    func fetch() {
         isLoading = true
         results = []
         
         service.fetch(self.searchText)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                if case .failure = completion {
+                    print("failure")
+                }
+            } receiveValue: { [weak self] in
+                self?.results = $0
+                self?.isLoading = false
+            }
+            .store(in: &cancellable)
+    }
+}
+
+final class StubSearchResultViewModel: SearchResultViewModelProtocol {
+    @Published var searchText: String = ""
+    @Published var results: [SearchResultModel] = []
+    
+    let service: SearchServiceType
+    
+    var cancellable: Set<AnyCancellable> = []
+    
+    var isLoading: Bool = false
+    
+    init(_ text: String) {
+        self.searchText = text
+        self.service = StubSearchService()
+    }
+    
+    func fetch() {
+        isLoading = true
+        results = []
+        
+        service.fetch(searchText)
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 if case .failure = completion {

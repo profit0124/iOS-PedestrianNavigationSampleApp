@@ -106,8 +106,10 @@ final class RouteNavigationViewModel: ObservableObject {
     
     private func startUpdaingLocation() {
         routeService.startUpdaingLocation(with: timeInterval)
-            .sink(receiveCompletion: {
-                print($0)
+            .sink(receiveCompletion: { completion in
+                if case .failure(let error) = completion {
+                    print(error)
+                }
             }, receiveValue: { [weak self] in
                 // navigationModel 배열 중 현재 나의 위치와 가장 가까운 Model의 Index 설정
                 // 가장 가까운 Index 의 루트 중간에 있는것으로 간주
@@ -178,20 +180,37 @@ final class RouteNavigationViewModel: ObservableObject {
     }
     // 개선 BinarySearch
     private func searchCurrentIndexByBinarySearch(from location: CLLocationCoordinate2D, start: Int, end: Int) {
-        if start == end || start + 1 == end {
-            if currentIndex < start {
-                self.maxCurrentIndex = start
+        let middleIndex = (start + end) / 2
+        if middleIndex == start {
+            if location == routes[end].pointCoordinate {
+                self.maxCurrentIndex = max(self.maxCurrentIndex, end)
+                self.currentIndex = end
+            } else {
+                self.maxCurrentIndex = max(self.maxCurrentIndex, start)
+                self.currentIndex = start
             }
-            currentIndex = start
         } else {
-            let middleIndex = (start + end) / 2
             let leftSideFrom = routes[start].pointCoordinate
             let leftSideTo = routes[middleIndex].pointCoordinate
+            
+            if leftSideTo == location {
+                self.maxCurrentIndex = max(self.maxCurrentIndex, middleIndex)
+                self.currentIndex = middleIndex
+                return
+            }
+            
             let leftSideClosedPoint = location.getShortestPoint(from: leftSideFrom, to: leftSideTo)
             let leftSideDistance = location.getDistance(to: leftSideClosedPoint)
             
             let rightSideFrom = routes[middleIndex].pointCoordinate
             let rightSideTo = routes[end].pointCoordinate
+            
+            if rightSideTo == location {
+                self.maxCurrentIndex = max(self.maxCurrentIndex, end)
+                self.currentIndex = end
+                return
+            }
+            
             let rightSideClosedPoint = location.getShortestPoint(from: rightSideFrom, to: rightSideTo)
             let rightSideDistance = location.getDistance(to: rightSideClosedPoint)
             if leftSideDistance < rightSideDistance {

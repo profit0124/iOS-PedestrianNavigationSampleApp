@@ -22,9 +22,18 @@ extension NavigationDestination {
         case .search:
             SearchView()
         case let .searchResult(text):
-            SearchResultView(text)
+            
+            #if targetEnvironment(simulator)
+            SearchResultView<StubSearchResultViewModel>(StubSearchResultViewModel(text))
+            #else
+            SearchResultView<SearchResultViewModel>(SearchResultViewModel(searchText: text))
+            #endif
         case let .searchDetail(selectItem):
+            #if targetEnvironment(simulator)
+            RouteTestView(selectItem)
+            #else
             SearchDetailView(selectItem)
+            #endif
         case let .navigation(destination, routes):
             SampleNavigatonView(destination: destination, routes: routes)
         case .coremotionTest:

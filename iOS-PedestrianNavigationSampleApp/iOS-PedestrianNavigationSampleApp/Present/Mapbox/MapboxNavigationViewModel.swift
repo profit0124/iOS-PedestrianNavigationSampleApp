@@ -49,8 +49,10 @@ final class MapboxNavigationViewModel: ObservableObject {
         self.mapboxCoordinates = nil
         mapboxService.fetch(CLLocationCoordinate2D(latitude: searchModel.lat, longitude: searchModel.long), profiler: .walking)
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {
-                print($0)
+            .sink(receiveCompletion: { completion in
+                if case .failure(let error) = completion {
+                    print(error)
+                }
             }, receiveValue: { [weak self] coordinates in
                 guard let self = self else { return }
                 self.mapboxCoordinates = coordinates
@@ -72,7 +74,6 @@ final class MapboxNavigationViewModel: ObservableObject {
                 guard let self = self else { return }
                 self.tmapModel = result.routes
                 self.checkIsCompleted()
-                
             })
             .store(in: &cancellable)
     }
