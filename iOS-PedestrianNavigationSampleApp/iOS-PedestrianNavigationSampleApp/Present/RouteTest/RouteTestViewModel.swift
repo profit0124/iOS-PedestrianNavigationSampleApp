@@ -99,7 +99,9 @@ class RouteTestViewModel: ObservableObject {
             self.routeService.fetch(destination)
                 .receive(on: DispatchQueue.main)
                 .sink { completion in
-                    print(completion)
+                    if case .failure(let error) = completion {
+                        print(error)
+                    }
                 } receiveValue: { [weak self] result in
                     guard let self else { return }
                     if let startLocation = result.routes.first?.pointCoordinate {
@@ -124,8 +126,10 @@ class RouteTestViewModel: ObservableObject {
                     longitude: destination.long),
                 toName: destination.name)
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {
-                print($0)
+            .sink(receiveCompletion: { completion in
+                if case .failure(let error) = completion {
+                    print(error)
+                }
             }, receiveValue: { [weak self] routes in
                 guard let self else { return }
                 self.routes = routes

@@ -79,7 +79,6 @@ struct CoreMotionTestMapView: UIViewRepresentable {
                 newAnnotation.title = "Customized Location"
                 self.expectedAnnotation = newAnnotation
                 mapView.addAnnotation(self.expectedAnnotation!)
-                print("exepected annotation 추가 \(expectedLocation.coordinate), \(viewModel.currentLocation?.coordinate)")
             }
         }
     }

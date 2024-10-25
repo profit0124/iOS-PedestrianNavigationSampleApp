@@ -22,10 +22,11 @@ extension NavigationDestination {
         case .search:
             SearchView()
         case let .searchResult(text):
+            
             #if targetEnvironment(simulator)
-            SearchResultSimulatorView(text)
+            SearchResultView<StubSearchResultViewModel>(StubSearchResultViewModel(text))
             #else
-            SearchResultView(text)
+            SearchResultView<SearchResultViewModel>(SearchResultViewModel(searchText: text))
             #endif
         case let .searchDetail(selectItem):
             #if targetEnvironment(simulator)

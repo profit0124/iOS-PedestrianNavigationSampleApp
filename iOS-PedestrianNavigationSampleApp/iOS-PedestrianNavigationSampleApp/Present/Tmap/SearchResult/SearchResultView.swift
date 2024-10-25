@@ -9,15 +9,15 @@ import SwiftUI
 import MapKit
 import Combine
 
-struct SearchResultView: View {
+struct SearchResultView<ViewModel>: View where ViewModel: SearchResultViewModelProtocol {
     
     @EnvironmentObject var router: ViewRouter
     
-    @StateObject private var viewModel: SearchResultViewModel
+    @StateObject private var viewModel: ViewModel
     @State private var mapView: MKMapView = .init(frame: .zero)
     
-    init(_ text: String) {
-        self._viewModel = .init(wrappedValue: SearchResultViewModel(searchText: text))
+    init(_ viewModel: ViewModel) {
+        self._viewModel = .init(wrappedValue: viewModel)
     }
     
     var body: some View {
@@ -54,10 +54,10 @@ struct SearchResultView: View {
         }
         .searchable(text: $viewModel.searchText)
         .onSubmit(of: .search) {
-            viewModel.send(.fetchData)
+            viewModel.fetch()
         }
         .task {
-            viewModel.send(.fetchData)
+            viewModel.fetch()
         }
     }
     
@@ -82,8 +82,8 @@ struct SearchResultView: View {
         }
         .overlay(alignment: .trailing) {
             Button(action: {
-                router.push(.mapboxnavigation(model: result))
-//                router.push(.searchDetail(selectItem: result))
+//                router.push(.mapboxnavigation(model: result))
+                router.push(.searchDetail(selectItem: result))
             }, label: {
                 Image(systemName: "magnifyingglass")
                     .foregroundStyle(Color.white)
@@ -98,5 +98,5 @@ struct SearchResultView: View {
 }
 
 #Preview {
-    SearchResultView("Search result")
+    SearchResultView<StubSearchResultViewModel>(.init("iii"))
 }

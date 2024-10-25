@@ -106,8 +106,10 @@ final class RouteNavigationViewModel: ObservableObject {
     
     private func startUpdaingLocation() {
         routeService.startUpdaingLocation(with: timeInterval)
-            .sink(receiveCompletion: {
-                print($0)
+            .sink(receiveCompletion: { completion in
+                if case .failure(let error) = completion {
+                    print(error)
+                }
             }, receiveValue: { [weak self] in
                 // navigationModel 배열 중 현재 나의 위치와 가장 가까운 Model의 Index 설정
                 // 가장 가까운 Index 의 루트 중간에 있는것으로 간주
