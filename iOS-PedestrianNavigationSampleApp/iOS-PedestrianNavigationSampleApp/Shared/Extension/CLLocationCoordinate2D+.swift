@@ -55,11 +55,12 @@ extension CLLocationCoordinate2D {
         let middleIndex = (startIndex + endIndex) / 2
         if middleIndex == startIndex {
             let closePoint = self.getShortestPoint(from: routes[startIndex], to: routes[endIndex])
+            let basisIndex = closePoint == routes[endIndex] ? endIndex : startIndex
             let distance = self.getDistance(to: closePoint)
             let filteredRoutes = routes
                 .enumerated()
                 .filter({
-                    $0.offset > startIndex
+                    $0.offset > basisIndex
                 })
                 .map({
                     $0.element

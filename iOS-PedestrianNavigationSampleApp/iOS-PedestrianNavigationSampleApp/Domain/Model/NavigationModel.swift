@@ -108,15 +108,29 @@ extension NavigationModel {
         
         let middle = (start + end) / 2
         if middle == start {
-            return start
+            if let endCoordinate = lineModels[end].cooridnates.first, endCoordinate == location {
+                return end
+            } else {
+                let left = lineModels[start].getDistance(at: location)
+                let right = lineModels[end].getDistance(at: location)
+                return left < right ? start : end
+            }
+        }
+        
+        let leftEndPoint = lineModels[middle].cooridnates.first
+        if leftEndPoint == location {
+            return middle
         }
         
         let leftStartPoint = lineModels[start].cooridnates.first
-        let leftEndPoint = lineModels[middle].cooridnates.last
         let leftDistnce = location.getShortestDistance(from: leftStartPoint!, to: leftEndPoint!)
         
-        let rightStartPoint = lineModels[middle].cooridnates.first!
         let rightEndPoint = lineModels[end].cooridnates.last!
+        if rightEndPoint == location {
+            return end
+        }
+        
+        let rightStartPoint = lineModels[middle].cooridnates.first!
         let rightDistance = location.getShortestDistance(from: rightStartPoint, to: rightEndPoint)
         
         if leftDistnce < rightDistance {

@@ -24,6 +24,10 @@
 		317143452C93E3AB007411B7 /* SearchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317143442C93E3AB007411B7 /* SearchDetailViewModel.swift */; };
 		3171434E2C940B23007411B7 /* SearchDetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3171434D2C940B23007411B7 /* SearchDetailMapView.swift */; };
 		317143502C941C40007411B7 /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3171434F2C941C40007411B7 /* NavigationModel.swift */; };
+		317E31992CC5F368007FFB4E /* RouteTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317E31982CC5F368007FFB4E /* RouteTestView.swift */; };
+		317E319B2CC5F3B6007FFB4E /* RouteTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317E319A2CC5F3B6007FFB4E /* RouteTestViewModel.swift */; };
+		317E319D2CC8C49A007FFB4E /* SearchResultSimulatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317E319C2CC8C49A007FFB4E /* SearchResultSimulatorView.swift */; };
+		317E31A12CC8C51B007FFB4E /* SearchResultSimulatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317E31A02CC8C51B007FFB4E /* SearchResultSimulatorViewModel.swift */; };
 		317E9D232CACE2C200134B28 /* SpeechHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317E9D222CACE2C200134B28 /* SpeechHelper.swift */; };
 		3180A62C2C9193B400558CBE /* dev.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3180A62A2C9192FA00558CBE /* dev.xcconfig */; };
 		3180A62E2C91943500558CBE /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180A62D2C91943500558CBE /* Constant.swift */; };
@@ -99,6 +103,10 @@
 		317143442C93E3AB007411B7 /* SearchDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewModel.swift; sourceTree = "<group>"; };
 		3171434D2C940B23007411B7 /* SearchDetailMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailMapView.swift; sourceTree = "<group>"; };
 		3171434F2C941C40007411B7 /* NavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
+		317E31982CC5F368007FFB4E /* RouteTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTestView.swift; sourceTree = "<group>"; };
+		317E319A2CC5F3B6007FFB4E /* RouteTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTestViewModel.swift; sourceTree = "<group>"; };
+		317E319C2CC8C49A007FFB4E /* SearchResultSimulatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultSimulatorView.swift; sourceTree = "<group>"; };
+		317E31A02CC8C51B007FFB4E /* SearchResultSimulatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultSimulatorViewModel.swift; sourceTree = "<group>"; };
 		317E9D222CACE2C200134B28 /* SpeechHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechHelper.swift; sourceTree = "<group>"; };
 		3180A62A2C9192FA00558CBE /* dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = dev.xcconfig; sourceTree = "<group>"; };
 		3180A62B2C91938C00558CBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -227,6 +235,24 @@
 			path = Routes;
 			sourceTree = "<group>";
 		};
+		317E31972CC5F358007FFB4E /* RouteTest */ = {
+			isa = PBXGroup;
+			children = (
+				317E31982CC5F368007FFB4E /* RouteTestView.swift */,
+				317E319A2CC5F3B6007FFB4E /* RouteTestViewModel.swift */,
+			);
+			path = RouteTest;
+			sourceTree = "<group>";
+		};
+		317E319F2CC8C503007FFB4E /* ForSimulator */ = {
+			isa = PBXGroup;
+			children = (
+				317E31A02CC8C51B007FFB4E /* SearchResultSimulatorViewModel.swift */,
+				317E319C2CC8C49A007FFB4E /* SearchResultSimulatorView.swift */,
+			);
+			path = ForSimulator;
+			sourceTree = "<group>";
+		};
 		318D0EF32C92817E00E6854C /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,6 +355,7 @@
 		31A3EDA82C92713600223179 /* SearchResult */ = {
 			isa = PBXGroup;
 			children = (
+				317E319F2CC8C503007FFB4E /* ForSimulator */,
 				318D0EFC2C9289AA00E6854C /* SearchResultViewModel.swift */,
 				318D0F242C92D85900E6854C /* SearchMapViewRepresentable.swift */,
 				31A3EDAD2C92716300223179 /* SearchResultView.swift */,
@@ -427,6 +454,7 @@
 		31D6C1B92C91925E00AA00EE /* Present */ = {
 			isa = PBXGroup;
 			children = (
+				317E31972CC5F358007FFB4E /* RouteTest */,
 				316A7C272CBE309E00FC81C6 /* Mapbox */,
 				316A7C262CBE309300FC81C6 /* Tmap */,
 				31D021092CB3C4FE0018A9FF /* CoreMotionTest */,
@@ -621,9 +649,11 @@
 			files = (
 				318D0F0C2C92B77B00E6854C /* SearchDTO.swift in Sources */,
 				318D0F022C92B33C00E6854C /* SearchService.swift in Sources */,
+				317E31A12CC8C51B007FFB4E /* SearchResultSimulatorViewModel.swift in Sources */,
 				316A7C422CBF6ABE00FC81C6 /* MapboxDirectionRepository.swift in Sources */,
 				316BF7FB2CAF89AE007A7655 /* TurnType.swift in Sources */,
 				31A3EDB22C92717200223179 /* SampleNavigatonView.swift in Sources */,
+				317E319B2CC5F3B6007FFB4E /* RouteTestViewModel.swift in Sources */,
 				318D0F062C92B41F00E6854C /* LocationManager.swift in Sources */,
 				3171433C2C93D1C8007411B7 /* RoutesResponseDTO.swift in Sources */,
 				317E9D232CACE2C200134B28 /* SpeechHelper.swift in Sources */,
@@ -632,9 +662,11 @@
 				318D0EFD2C9289AA00E6854C /* SearchResultViewModel.swift in Sources */,
 				318D0F182C92BE0300E6854C /* Encodable+.swift in Sources */,
 				31A3EDAC2C92715D00223179 /* SearchView.swift in Sources */,
+				317E319D2CC8C49A007FFB4E /* SearchResultSimulatorView.swift in Sources */,
 				317143502C941C40007411B7 /* NavigationModel.swift in Sources */,
 				317143452C93E3AB007411B7 /* SearchDetailViewModel.swift in Sources */,
 				3171434E2C940B23007411B7 /* SearchDetailMapView.swift in Sources */,
+				317E31992CC5F368007FFB4E /* RouteTestView.swift in Sources */,
 				31D021112CB3C6370018A9FF /* RoundedRectangleButtonStyle.swift in Sources */,
 				318D0F252C92D85900E6854C /* SearchMapViewRepresentable.swift in Sources */,
 				3171433F2C93DD7A007411B7 /* RoutesTarget.swift in Sources */,

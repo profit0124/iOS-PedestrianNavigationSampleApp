@@ -15,7 +15,7 @@ protocol SearchServiceType {
 
 final class SearchService: SearchServiceType {
     
-    let locationManager: LocationManager
+    let locationManager: LocationManagerProtocol
     let searchRepository: SearchRepositoryProtocol
     
     init() {
@@ -52,7 +52,35 @@ final class SearchService: SearchServiceType {
 }
 
 final class StubSearchService: SearchServiceType {
+    
+    let locationManager: LocationManagerProtocol
+    let searchRepository: SearchRepositoryProtocol
+    
+    init() {
+        self.locationManager = StubLocationManager()
+        self.searchRepository = SearchRepository()
+    }
+    
     func fetch(_ text: String) -> AnyPublisher<[SearchResultModel], ServiceError> {
-        Just([.mock1, .mock2, .mock3]).setFailureType(to: ServiceError.self).eraseToAnyPublisher()
+//        return Just([.mock1, .mock2, .mock3]).setFailureType(to: ServiceError.self).eraseToAnyPublisher()
+        return locationManager.fetchLocation()
+            .flatMap { [weak self] in
+                if let self {
+                    let coordinator = $0
+                    return self.searchRepository.fetchTotal(.init(searchKeyword: text, centerLon: coordinator.longitude, centerLat: coordinator.latitude, page: 1))
+                } else {
+                    return Future { promise in
+                        promise(.failure(DataError.failToGetLocation))
+                    }
+                    .eraseToAnyPublisher()
+                }
+            }
+            .map {
+                $0.searchPoiInfo.pois.poi.map {
+                    $0.toModel()
+                }
+            }
+            .mapError { .error($0) }
+            .eraseToAnyPublisher()
     }
 }

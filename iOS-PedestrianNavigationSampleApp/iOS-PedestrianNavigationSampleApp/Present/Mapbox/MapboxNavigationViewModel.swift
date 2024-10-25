@@ -72,7 +72,6 @@ final class MapboxNavigationViewModel: ObservableObject {
                 guard let self = self else { return }
                 self.tmapModel = result.routes
                 self.checkIsCompleted()
-                
             })
             .store(in: &cancellable)
     }

@@ -10,7 +10,13 @@ import CoreLocation
 import CoreMotion
 import Combine
 
-class LocationManager: NSObject {
+protocol LocationManagerProtocol {
+    func fetchLocation() -> AnyPublisher<CLLocationCoordinate2D, DataError>
+    func startUpdatingLocation(with timeInterval: TimeInterval) -> AnyPublisher<CLLocation, DataError>
+    func stopUpdatingLocation()
+}
+
+class LocationManager: NSObject, LocationManagerProtocol {
     private let locationManager: CLLocationManager
     private let motionManager: CMMotionManager
     var locationPublisher: PassthroughSubject<CLLocation, DataError>?
@@ -145,5 +151,31 @@ extension LocationManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         self.heading = newHeading.trueHeading
+    }
+}
+
+
+final class StubLocationManager: LocationManagerProtocol {
+    
+    private let currentLocation: CLLocationCoordinate2D = .init(latitude: 37.3945, longitude: 126.9485)
+    
+    func fetchLocation() -> AnyPublisher<CLLocationCoordinate2D, DataError> {
+        Future { [weak self] promise in
+            guard let self else { return }
+            promise(.success(self.currentLocation))
+        }.eraseToAnyPublisher()
+    }
+    
+    // TODO: 추후 이동경로 Mock data 를 사용해서 시간단위로 전달 예정(Simulator 용 테스트)
+    func startUpdatingLocation(with timeInterval: TimeInterval) -> AnyPublisher<CLLocation, DataError> {
+        Future { [weak self] promise in
+            guard let self else { return }
+            let location = CLLocation(latitude: self.currentLocation.latitude, longitude: self.currentLocation.longitude)
+            promise(.success(location))
+        }.eraseToAnyPublisher()
+    }
+    
+    func stopUpdatingLocation() {
+        print("stop update location")
     }
 }
